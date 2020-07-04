@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/TsaiJie/tsaiwheel-vue/issues"
   },
-  "homepage": "https://github.com/TsaiJie/tsaiwheel-vue#readme"
+  "homepage": "https://github.com/TsaiJie/tsaiwheel-vue#readme",
+  "dependencies": {
+    "vue": "^2.6.11"
+  }
 }
