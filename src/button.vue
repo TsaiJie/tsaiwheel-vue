@@ -10,6 +10,7 @@
 </template>
 
 <script>
+	import Icon from './icon'
   export default {
     props: {
       icon: {type: String},
@@ -24,7 +25,10 @@
 				  return value === 'left' || value === 'right'
 				}
 			}
-    }
+    },
+		components:{
+      't-icon': Icon
+		}
   }
 </script>
 
