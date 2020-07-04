@@ -39,7 +39,10 @@
 </head>
 <body>
 <div id="app">
-	<t-button icon="settings">
+	<t-button icon="settings" @click="loading1 = !loading1" :loading="loading1">
+		按钮
+	</t-button>
+	<t-button :loading="true">
 		按钮
 	</t-button>
 	<t-button icon="settings" icon-position="right">

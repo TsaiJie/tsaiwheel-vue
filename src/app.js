@@ -4,5 +4,8 @@ import Icon from './icon'
 Vue.component('t-button', Button)
 Vue.component('t-icon', Icon)
 new Vue({
-  el: '#app'
+  el: '#app',
+  data:{
+    loading1: false
+  }
 })
