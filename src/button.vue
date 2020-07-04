@@ -12,7 +12,16 @@
 
 <script>
   export default {
-    props:['icon', 'iconPosition']
+    props: {
+      icon: {type: String},
+			iconPosition: {
+        type: String,
+				default: 'left',
+				validator(value){
+				  return value === 'left' || value === 'right'
+				}
+			}
+    }
   }
 </script>
 
@@ -28,25 +37,31 @@
 		height: var(--button-height);
 		padding: 0 1em;
 		border-radius: var(--border-radius);
-		border: 1px solid var(--border-color) ;
+		border: 1px solid var(--border-color);
 		background: var(--button-bg);
-		&:hover{
+
+		&:hover {
 			border-color: var(--border-color-hover);
 		}
+
 		&:active {
 			background-color: var(--button-active-bg);
 		}
+
 		&:focus {
 			outline: none;
 		}
+
 		/*默认icon在前面 content在后面*/
-		> .icon{
+		> .icon {
 			order: 1;
 			margin-right: .3em;
 		}
+
 		> .content {
 			order: 2;
 		}
+
 		/*如果iconPosition = right 则 content在前 icon在后*/
 		&.icon-right {
 			> .icon {
@@ -55,10 +70,10 @@
 				margin-right: 0;
 
 			}
+
 			> .content {
 				order: 1
 			}
 		}
 	}
-Í
 </style>
