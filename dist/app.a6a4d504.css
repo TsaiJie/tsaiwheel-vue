@@ -1,3 +1,7 @@
+.t-icon[data-v-b64c7d] {
+  height: 1em;
+  width: 1em;
+}
 @charset "UTF-8";
 @keyframes spin {
   0% {
@@ -48,10 +52,6 @@
 }
 .t-button .loading {
   animation: spin 2s infinite linear;
-}
-.t-icon[data-v-b64c7d] {
-  height: 1em;
-  width: 1em;
 }
 .t-button-group[data-v-39f993] {
   display: inline-flex;
