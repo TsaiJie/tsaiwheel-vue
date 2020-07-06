@@ -66,6 +66,11 @@
 	<div class="box">
 		<t-input value="张三" error="姓名不能少于2个字段"></t-input>
 	</div>
+	<div class="box">
+		<t-input value="张三" v-model="message"></t-input>
+		<p>{{message}}</p>
+		<button @click="message+=1">+1</button>
+	</div>
 </div>
 <script src="./src/app.js"></script>
 

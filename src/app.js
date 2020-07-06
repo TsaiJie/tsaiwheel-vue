@@ -10,7 +10,8 @@ Vue.component('t-input', Input)
 new Vue({
   el: '#app',
   data:{
-    loading1: false
+    loading1: false,
+    message: "1111"
   },
   methods:{
     inputChange(e){
