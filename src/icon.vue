@@ -7,6 +7,7 @@
 <script>
 	import './svg.js'
   export default {
+	  name: 'WheelIcon',
     props: ['name']
   }
 </script>
