@@ -12780,6 +12780,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   name: "WheelInput",
   props: {
@@ -12821,7 +12828,21 @@ exports.default = _default;
     [
       _c("input", {
         attrs: { type: "text", disabled: _vm.disabled, readonly: _vm.readOnly },
-        domProps: { value: _vm.value }
+        domProps: { value: _vm.value },
+        on: {
+          change: function($event) {
+            return _vm.$emit("change", $event)
+          },
+          input: function($event) {
+            return _vm.$emit("input", $event)
+          },
+          blur: function($event) {
+            return _vm.$emit("blur", $event)
+          },
+          focus: function($event) {
+            return _vm.$emit("focus", $event)
+          }
+        }
       }),
       _vm._v(" "),
       _vm.error
@@ -12897,6 +12918,11 @@ new _vue.default({
   el: '#app',
   data: {
     loading1: false
+  },
+  methods: {
+    inputChange: function inputChange(e) {
+      console.log(e.target.value);
+    }
   }
 });
 },{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {

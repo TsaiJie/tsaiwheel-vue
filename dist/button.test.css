@@ -3,15 +3,15 @@
   width: 1em;
 }
 @charset "UTF-8";
-@keyframes spin {
-  0% {
+@keyframes spin-data-v-9a6935 {
+0% {
     transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
-.t-button {
+100% {
+    transform: rotate(360deg);
+}
+}
+.t-button[data-v-9a6935] {
   display: inline-flex;
   /*垂直居中*/
   justify-content: center;
@@ -26,30 +26,30 @@
   /*默认icon在前面 content在后面*/
   /*如果iconPosition = right 则 content在前 icon在后*/
 }
-.t-button:hover {
+.t-button[data-v-9a6935]:hover {
   border-color: var(--border-color-hover);
 }
-.t-button:active {
+.t-button[data-v-9a6935]:active {
   background-color: var(--button-active-bg);
 }
-.t-button:focus {
+.t-button[data-v-9a6935]:focus {
   outline: none;
 }
-.t-button > .icon {
+.t-button > .icon[data-v-9a6935] {
   order: 1;
   margin-right: 0.3em;
 }
-.t-button > .content {
+.t-button > .content[data-v-9a6935] {
   order: 2;
 }
-.t-button.icon-right > .icon {
+.t-button.icon-right > .icon[data-v-9a6935] {
   order: 2;
   margin-left: 0.3em;
   margin-right: 0;
 }
-.t-button.icon-right > .content {
+.t-button.icon-right > .content[data-v-9a6935] {
   order: 1;
 }
-.t-button .loading {
-  animation: spin 2s infinite linear;
+.t-button .loading[data-v-9a6935] {
+  animation: spin-data-v-9a6935 2s infinite linear;
 }
