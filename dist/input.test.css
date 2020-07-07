@@ -1,0 +1,43 @@
+.t-icon[data-v-b64c7d] {
+  height: 1em;
+  width: 1em;
+}
+.wrapper[data-v-922e73] {
+  display: inline-flex;
+  align-items: center;
+}
+.wrapper[data-v-922e73] > :not(:last-child) {
+  margin-right: 0.5em;
+}
+.wrapper > input[data-v-922e73] {
+  height: 32px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 0 8px;
+  font-size: inherit;
+}
+.wrapper > input[data-v-922e73]:hover {
+  border-color: #666;
+}
+.wrapper > input[data-v-922e73]:focus {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+.wrapper > input[disabled][data-v-922e73], .wrapper > input[readonly][data-v-922e73] {
+  border-color: #ccc;
+  color: #ccc;
+  cursor: not-allowed;
+}
+.wrapper.error > input[data-v-922e73] {
+  border-color: #f1453d;
+}
+.wrapper.error > input[data-v-922e73]:focus {
+  box-shadow: inset 0 1px 3px rgba(241, 69, 61, 0.5);
+  outline: none;
+}
+.wrapper .icon-error[data-v-922e73] {
+  fill: #f1453d;
+}
+.wrapper .error-message[data-v-922e73] {
+  color: #f1453d;
+}
