@@ -3,10 +3,15 @@ import Button from './button'
 import Icon from './icon'
 import ButtonGroup from './button-group'
 import Input from './input'
+import Row from './row'
+import Col from './col'
+
 Vue.component('t-button', Button)
 Vue.component('t-icon', Icon)
 Vue.component('t-button-group', ButtonGroup)
 Vue.component('t-input', Input)
+Vue.component('t-row', Row)
+Vue.component('t-col', Col)
 new Vue({
   el: '#app',
   data:{

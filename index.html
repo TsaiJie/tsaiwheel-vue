@@ -34,10 +34,12 @@
 
 	</style>
 	<style>
-	.box {
-		margin: 20px;
-	}
+		.box {
+			margin: 20px;
+		}
+
 	</style>
+
 </head>
 <body>
 <div id="app">
@@ -71,6 +73,29 @@
 		<p>{{message}}</p>
 		<button @click="message+=1">+1</button>
 	</div>
+	<t-row>
+		<t-col>1</t-col>
+		<t-col>2</t-col>
+	</t-row>
+	<t-row>
+		<t-col>1</t-col>
+		<t-col>2</t-col>
+		<t-col>3</t-col>
+	</t-row>
+	<t-row>
+		<t-col>1</t-col>
+		<t-col>2</t-col>
+		<t-col>3</t-col>
+		<t-col>4</t-col>
+	</t-row>
+	<t-row>
+		<t-col :span="2">1</t-col>
+		<t-col :span="22">2</t-col>
+	</t-row>
+	<t-row>
+		<t-col :span="4">1</t-col>
+		<t-col :span="20">2</t-col>
+	</t-row>
 </div>
 <script src="./src/app.js"></script>
 
