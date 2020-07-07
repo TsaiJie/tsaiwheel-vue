@@ -13006,6 +13006,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
 //
 //
 //
@@ -13014,6 +13015,18 @@ exports.default = void 0;
 //
 //
 //
+//
+var validator = function validator(value) {
+  var keys = Object.keys(value);
+  var valid = true;
+  keys.forEach(function (key) {
+    if (!['span', 'offset'].includes(key)) {
+      valid = false;
+    }
+  });
+  return valid;
+};
+
 var _default = {
   name: 'WheelCol',
   props: {
@@ -13022,6 +13035,26 @@ var _default = {
     },
     offset: {
       type: [Number, String]
+    },
+    phone: {
+      type: Object,
+      validator: validator
+    },
+    ipad: {
+      type: Object,
+      validator: validator
+    },
+    narrowPc: {
+      type: Object,
+      validator: validator
+    },
+    pc: {
+      type: Object,
+      validator: validator
+    },
+    widePc: {
+      type: Object,
+      validator: validator
     }
   },
   data: function data() {
@@ -13032,8 +13065,13 @@ var _default = {
   computed: {
     colClass: function colClass() {
       var span = this.span,
-          offset = this.offset;
-      return ["col-".concat(span), offset && "offset-".concat(offset)];
+          offset = this.offset,
+          phone = this.phone,
+          ipad = this.ipad,
+          narrowPc = this.narrowPc,
+          pc = this.pc,
+          widePc = this.widePc;
+      return ["col-".concat(span), offset && "offset-".concat(offset), phone && (phone.span || phone.offset) && "col-phone-".concat(phone.span), ipad && (ipad.span || ipad.offset) && "col-ipad-".concat(ipad.span), narrowPc && (narrowPc.span || narrowPc.offset) && "col-narrow-pc-".concat(narrowPc.span), pc && (pc.span || pc.offset) && "col-pc-".concat(pc.span), widePc && (widePc.span || widePc.offset) && "col-wide-pc-".concat(widePc.span)];
     },
     colPadding: function colPadding() {
       return this.gutter / 2 + 'px';

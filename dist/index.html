@@ -34,7 +34,7 @@
 		}</style>
 	<style>.demoBox {
 			height: 50px;
-			background: #ccc;
+			/*background: #ccc;*/
 			border:  1px solid deeppink;
 		}</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
@@ -92,11 +92,18 @@
 				</t-row>
 			</t-col>
 		</t-row>
-		<t-row>
-			<t-col class="demoBox" span="4"></t-col>
-			<t-col class="demoBox" span="14"></t-col>
-			<t-col class="demoBox" span="6"></t-col>
+		<t-row gutter="20">
+			<t-col span="4"><div class="demoBox"></div></t-col>
+			<t-col span="14"><div class="demoBox"></div></t-col>
+			<t-col span="6"><div class="demoBox"></div></t-col>
 		</t-row>
+	</div>
+	<t-row gutter="20">
+		<t-col span="2" :phone="{span: 24}" :ipad="{span: 8}" :narrow-pc="{span: 4}" :pc="{span: 2}" :wide-pc="{span: 1}"><div class="demoBox"></div></t-col>
+		<t-col span="20" :phone="{span: 24}" :ipad="{span: 16}" :narrow-pc="{span: 20}" :pc="{span: 22}" :wide-pc="{span: 23}"><div class="demoBox"></div></t-col>
+	</t-row>
+	<div class="box">
+
 	</div>
 </div>
 <script src="/app.a6a4d504.js"></script>
