@@ -32,7 +32,11 @@
 	<style>.box {
 			margin: 20px;
 		}</style>
-
+	<style>.demoBox {
+			height: 50px;
+			background: #ccc;
+			border:  1px solid deeppink;
+		}</style>
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
 <div id="app">
@@ -67,33 +71,31 @@
 		<button @click="message+=1">+1</button>
 	</div>
 	<div style="border: 1px solid blue">
-		<t-row gutter="20 ">
-			<t-col>1</t-col>
-			<t-col>2</t-col>
+		<t-row class="topBar">
+			<t-col class="demoBox" span="9">
+				<t-row algin="left">
+					<t-col>1</t-col>
+					<t-col>2</t-col>
+					<t-col>3</t-col>
+					<t-col>4</t-col>
+				</t-row>
+			</t-col>
+			<t-col class="demoBox" span="15">
+				<t-row algin="right">
+					<t-col>1</t-col>
+					<t-col>2</t-col>
+					<t-col>3</t-col>
+					<t-col>4</t-col>
+					<t-col>5</t-col>
+					<t-col>6</t-col>
+					<t-col>7</t-col>
+				</t-row>
+			</t-col>
 		</t-row>
-		<t-row gutter="20">
-			<t-col>1</t-col>
-			<t-col>2</t-col>
-			<t-col>3</t-col>
-		</t-row>
-		<t-row gutter="20">
-			<t-col>1</t-col>
-			<t-col>2</t-col>
-			<t-col>3</t-col>
-			<t-col>4</t-col>
-		</t-row>
-		<t-row gutter="20">
-			<t-col :span="4">1</t-col>
-			<t-col :span="20">2</t-col>
-		</t-row>
-		<t-row gutter="20">
-			<t-col :span="2">1</t-col>
-			<t-col :span="20" offset="2">2</t-col>
-		</t-row>
-
 		<t-row>
-			<t-col :span="4">1</t-col>
-			<t-col :span="16" offset="4">2</t-col>
+			<t-col class="demoBox" span="4"></t-col>
+			<t-col class="demoBox" span="14"></t-col>
+			<t-col class="demoBox" span="6"></t-col>
 		</t-row>
 	</div>
 </div>

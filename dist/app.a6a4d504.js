@@ -12915,6 +12915,12 @@ var _default = {
   props: {
     gutter: {
       type: [String, Number]
+    },
+    algin: {
+      type: String,
+      validator: function validator(value) {
+        return ['left', 'center', 'right'].includes(value);
+      }
     }
   },
   computed: {
@@ -12926,6 +12932,10 @@ var _default = {
         marginLeft: this.RowMargin,
         marginRight: this.RowMargin
       };
+    },
+    RowClass: function RowClass() {
+      var algin = this.algin;
+      return [algin && "algin-".concat(algin)];
     }
   },
   mounted: function mounted() {
@@ -12951,7 +12961,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "row", style: _vm.RowStyle },
+    { staticClass: "row", class: _vm.RowClass, style: _vm.RowStyle },
     [_vm._t("default")],
     2
   )

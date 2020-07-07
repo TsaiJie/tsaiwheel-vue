@@ -117,10 +117,17 @@
 .row[data-v-f73e00] {
   display: flex;
 }
+.row.algin-left[data-v-f73e00] {
+  justify-content: flex-start;
+}
+.row.algin-right[data-v-f73e00] {
+  justify-content: flex-end;
+}
+.row.algin-center[data-v-f73e00] {
+  justify-content: center;
+}
 @charset "UTF-8";
 .col[data-v-d2fba6] {
-  /*background: grey;*/
-  width: 50%;
   /*.col.col-x*/
   /*使用scss使用生成多个class*/
   /*.col.offset-x*/

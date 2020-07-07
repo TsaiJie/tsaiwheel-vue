@@ -42,8 +42,6 @@
 
 <style scoped lang="scss">
 	.col {
-		/*background: grey;*/
-		width: 50%;
 		$class-prefix: col-;
 		/*.col.col-x*/
 		/*使用scss使用生成多个class*/
