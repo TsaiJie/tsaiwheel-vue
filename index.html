@@ -73,29 +73,36 @@
 		<p>{{message}}</p>
 		<button @click="message+=1">+1</button>
 	</div>
-	<t-row>
-		<t-col>1</t-col>
-		<t-col>2</t-col>
-	</t-row>
-	<t-row>
-		<t-col>1</t-col>
-		<t-col>2</t-col>
-		<t-col>3</t-col>
-	</t-row>
-	<t-row>
-		<t-col>1</t-col>
-		<t-col>2</t-col>
-		<t-col>3</t-col>
-		<t-col>4</t-col>
-	</t-row>
-	<t-row>
-		<t-col :span="2">1</t-col>
-		<t-col :span="22">2</t-col>
-	</t-row>
-	<t-row>
-		<t-col :span="4">1</t-col>
-		<t-col :span="20">2</t-col>
-	</t-row>
+	<div style="border: 1px solid blue">
+		<t-row gutter="20 ">
+			<t-col>1</t-col>
+			<t-col>2</t-col>
+		</t-row>
+		<t-row gutter="20">
+			<t-col>1</t-col>
+			<t-col>2</t-col>
+			<t-col>3</t-col>
+		</t-row>
+		<t-row gutter="20">
+			<t-col>1</t-col>
+			<t-col>2</t-col>
+			<t-col>3</t-col>
+			<t-col>4</t-col>
+		</t-row>
+		<t-row gutter="20">
+			<t-col :span="4">1</t-col>
+			<t-col :span="20">2</t-col>
+		</t-row>
+		<t-row gutter="20">
+			<t-col :span="2" >1</t-col>
+			<t-col :span="20" offset="2">2</t-col>
+		</t-row>
+
+		<t-row>
+			<t-col :span="4">1</t-col>
+			<t-col :span="16" offset="4">2</t-col>
+		</t-row>
+	</div>
 </div>
 <script src="./src/app.js"></script>
 
