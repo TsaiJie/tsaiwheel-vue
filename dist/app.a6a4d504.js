@@ -12917,6 +12917,17 @@ var _default = {
       type: [String, Number]
     }
   },
+  computed: {
+    RowMargin: function RowMargin() {
+      return -this.gutter / 2 + 'px';
+    },
+    RowStyle: function RowStyle() {
+      return {
+        marginLeft: this.RowMargin,
+        marginRight: this.RowMargin
+      };
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -12940,13 +12951,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "row",
-      style: {
-        marginLeft: -_vm.gutter / 2 + "px",
-        marginRight: -_vm.gutter / 2 + "px"
-      }
-    },
+    { staticClass: "row", style: _vm.RowStyle },
     [_vm._t("default")],
     2
   )
@@ -12999,8 +13004,6 @@ exports.default = void 0;
 //
 //
 //
-//
-//
 var _default = {
   name: 'WheelCol',
   props: {
@@ -13015,6 +13018,22 @@ var _default = {
     return {
       gutter: 0
     };
+  },
+  computed: {
+    colClass: function colClass() {
+      var span = this.span,
+          offset = this.offset;
+      return ["col-".concat(span), offset && "offset-".concat(offset)];
+    },
+    colPadding: function colPadding() {
+      return this.gutter / 2 + 'px';
+    },
+    colStyle: function colStyle() {
+      return {
+        paddingLeft: this.colPadding,
+        paddingRight: this.colPadding
+      };
+    }
   }
 };
 exports.default = _default;
@@ -13032,22 +13051,9 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "col",
-      class: ["col-" + _vm.span, _vm.offset && "offset-" + _vm.offset],
-      style: {
-        paddingLeft: _vm.gutter / 2 + "px",
-        paddingRight: _vm.gutter / 2 + "px"
-      }
-    },
-    [
-      _c(
-        "div",
-        { staticStyle: { border: "1px solid green", height: "100px" } },
-        [_vm._t("default")],
-        2
-      )
-    ]
+    { staticClass: "col", class: _vm.colClass, style: _vm.colStyle },
+    [_vm._t("default")],
+    2
   )
 }
 var staticRenderFns = []

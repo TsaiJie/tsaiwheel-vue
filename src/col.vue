@@ -1,30 +1,43 @@
 <template>
-	<div  class="col"
-				:class="[`col-${span}`, offset && `offset-${offset}`]"
-				:style="{paddingLeft: gutter/2 +'px', paddingRight: gutter/2 + 'px'}">
-		<div style="border: 1px solid green; height: 100px">
-			<slot></slot>
-		</div>
+	<div class="col"
+			 :class="colClass"
+			 :style="colStyle">
+		<slot></slot>
 
 	</div>
 </template>
 <script>
-	export default {
-	  name: 'WheelCol',
-		props: {
-	    span :{
-	      type: [Number, String]
-			},
-			offset: {
-	      type: [Number, String]
-			}
-		},
-		data() {
-	    return {
-	      gutter: 0
-			}
-		}
-	}
+  export default {
+    name: 'WheelCol',
+    props: {
+      span: {
+        type: [Number, String]
+      },
+      offset: {
+        type: [Number, String]
+      }
+    },
+    data() {
+      return {
+        gutter: 0,
+      }
+    },
+    computed: {
+      colClass() {
+        let {span, offset} = this
+        return [`col-${span}`, offset && `offset-${offset}`]
+      },
+      colPadding() {
+        return this.gutter / 2 + 'px'
+      },
+      colStyle() {
+        return {
+          paddingLeft: this.colPadding,
+          paddingRight: this.colPadding,
+        }
+      }
+    }
+  }
 </script>
 
 <style scoped lang="scss">
