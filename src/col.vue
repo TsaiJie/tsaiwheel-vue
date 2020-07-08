@@ -33,17 +33,25 @@
         gutter: 0,
       }
     },
+		methods: {
+      createClasses(obj, str=''){
+        let array = []
+        if (!obj) return array
+				if (obj.span) array.push(`col-${str}${obj.span}`)
+				if (obj.offset) array.push(`offset-${str}${obj.offset}`)
+				return array
+			}
+		},
     computed: {
       colClass() {
-        let {span, offset, ipad, narrowPc, pc, widePc} = this
-
+        let {span, offset, ipad, narrowPc, pc, widePc, } = this
+				let createClasses = this.createClasses
         return [
-          `col-${span}`,
-          offset && `offset-${offset}`,
-          (ipad && (ipad.span || ipad.offset)) ? `col-ipad-${ipad.span}`: '',
-          (narrowPc && (narrowPc.span || narrowPc.offset)) ? `col-narrow-pc-${narrowPc.span}`:'',
-          (pc && (pc.span || pc.offset)) ? `col-pc-${pc.span}` : '',
-          (widePc && (widePc.span || widePc.offset)) ? `col-wide-pc-${widePc.span}` : '',
+         ...createClasses({span, offset}),
+         ...createClasses(ipad, 'ipad-'),
+         ...createClasses(narrowPc, 'narrow-pc-'),
+         ...createClasses(pc, 'pc-'),
+         ...createClasses(widePc, 'wide-pc'),
         ]
       },
       colPadding() {
@@ -60,6 +68,17 @@
 </script>
 
 <style scoped lang="scss">
+	@mixin Adaptive($property, $class-prefix, $min-width) {
+		@media (min-width: #{$min-width}) {
+			/*.col.col-x*/
+			/*使用scss使用生成多个class*/
+			@for $n from 1 through 24 {
+				&.#{$class-prefix}#{$n} {
+					#{$property}: ($n /24) * 100%;
+				}
+			}
+		}
+	}
 	.col {
 		$class-prefix: col-;
 		/*.col.col-x*/
@@ -76,74 +95,15 @@
 				margin-left: ($n /24) * 100%;
 			}
 		}
-		@media (min-width: 577px) {
-			$class-prefix: col-ipad-;
-			/*.col.col-x*/
-			/*使用scss使用生成多个class*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					width: ($n /24) * 100%;
-				}
-			}
-			$class-prefix: offset-ipad-;
-			/*.col.offset-x*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					margin-left: ($n /24) * 100%;
-				}
-			}
-		}
-		@media (min-width: 769px) {
-			$class-prefix: col-narrow-pc-;
-			/*.col.col-x*/
-			/*使用scss使用生成多个class*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					width: ($n /24) * 100%;
-				}
-			}
-			$class-prefix: offset-narrow-pc-;
-			/*.col.offset-x*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					margin-left: ($n /24) * 100%;
-				}
-			}
-		}
-		@media (min-width: 993px) {
-			$class-prefix: col-pc-;
-			/*.col.col-x*/
-			/*使用scss使用生成多个class*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					width: ($n /24) * 100%;
-				}
-			}
-			$class-prefix: offset-pc-;
-			/*.col.offset-x*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					margin-left: ($n /24) * 100%;
-				}
-			}
-		}
-		@media (min-width: 1201px) {
-			$class-prefix: col-wide-pc-;
-			/*.col.col-x*/
-			/*使用scss使用生成多个class*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					width: ($n /24) * 100%;
-				}
-			}
-			$class-prefix: offset-wide-pc-;
-			/*.col.offset-x*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					margin-left: ($n /24) * 100%;
-				}
-			}
-		}
+		@include Adaptive(width,col-ipad-,557px);
+		@include Adaptive(margin-left,offset-ipad-,557px);
+		@include Adaptive(width,col-narrow-pc-,769px);
+		@include Adaptive(margin-left,offset-narrow-pc-,769px);
+		@include Adaptive(width,col-pc-,993px);
+		@include Adaptive(margin-left,offset-pc-,993px);
+		@include Adaptive(width,col-wide-pc-,1201px);
+		@include Adaptive(margin-left,offset-wide-pc-,1201px);
+
 
 	}
 </style>

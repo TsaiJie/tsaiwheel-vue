@@ -277,11 +277,10 @@
 .col.offset-24[data-v-d2fba6] {
   margin-left: 100%;
 }
-@media (min-width: 577px) {
+@media (min-width: 557px) {
 .col[data-v-d2fba6] {
     /*.col.col-x*/
     /*使用scss使用生成多个class*/
-    /*.col.offset-x*/
 }
 .col.col-ipad-1[data-v-d2fba6] {
     width: 4.1666666667%;
@@ -354,6 +353,12 @@
 }
 .col.col-ipad-24[data-v-d2fba6] {
     width: 100%;
+}
+}
+@media (min-width: 557px) {
+.col[data-v-d2fba6] {
+    /*.col.col-x*/
+    /*使用scss使用生成多个class*/
 }
 .col.offset-ipad-1[data-v-d2fba6] {
     margin-left: 4.1666666667%;
@@ -432,7 +437,6 @@
 .col[data-v-d2fba6] {
     /*.col.col-x*/
     /*使用scss使用生成多个class*/
-    /*.col.offset-x*/
 }
 .col.col-narrow-pc-1[data-v-d2fba6] {
     width: 4.1666666667%;
@@ -505,6 +509,12 @@
 }
 .col.col-narrow-pc-24[data-v-d2fba6] {
     width: 100%;
+}
+}
+@media (min-width: 769px) {
+.col[data-v-d2fba6] {
+    /*.col.col-x*/
+    /*使用scss使用生成多个class*/
 }
 .col.offset-narrow-pc-1[data-v-d2fba6] {
     margin-left: 4.1666666667%;
@@ -583,7 +593,6 @@
 .col[data-v-d2fba6] {
     /*.col.col-x*/
     /*使用scss使用生成多个class*/
-    /*.col.offset-x*/
 }
 .col.col-pc-1[data-v-d2fba6] {
     width: 4.1666666667%;
@@ -656,6 +665,12 @@
 }
 .col.col-pc-24[data-v-d2fba6] {
     width: 100%;
+}
+}
+@media (min-width: 993px) {
+.col[data-v-d2fba6] {
+    /*.col.col-x*/
+    /*使用scss使用生成多个class*/
 }
 .col.offset-pc-1[data-v-d2fba6] {
     margin-left: 4.1666666667%;
@@ -734,7 +749,6 @@
 .col[data-v-d2fba6] {
     /*.col.col-x*/
     /*使用scss使用生成多个class*/
-    /*.col.offset-x*/
 }
 .col.col-wide-pc-1[data-v-d2fba6] {
     width: 4.1666666667%;
@@ -807,6 +821,12 @@
 }
 .col.col-wide-pc-24[data-v-d2fba6] {
     width: 100%;
+}
+}
+@media (min-width: 1201px) {
+.col[data-v-d2fba6] {
+    /*.col.col-x*/
+    /*使用scss使用生成多个class*/
 }
 .col.offset-wide-pc-1[data-v-d2fba6] {
     margin-left: 4.1666666667%;
