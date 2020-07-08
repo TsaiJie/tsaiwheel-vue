@@ -13036,10 +13036,6 @@ var _default = {
     offset: {
       type: [Number, String]
     },
-    phone: {
-      type: Object,
-      validator: validator
-    },
     ipad: {
       type: Object,
       validator: validator
@@ -13066,12 +13062,11 @@ var _default = {
     colClass: function colClass() {
       var span = this.span,
           offset = this.offset,
-          phone = this.phone,
           ipad = this.ipad,
           narrowPc = this.narrowPc,
           pc = this.pc,
           widePc = this.widePc;
-      return ["col-".concat(span), offset && "offset-".concat(offset), phone && (phone.span || phone.offset) && "col-phone-".concat(phone.span), ipad && (ipad.span || ipad.offset) && "col-ipad-".concat(ipad.span), narrowPc && (narrowPc.span || narrowPc.offset) && "col-narrow-pc-".concat(narrowPc.span), pc && (pc.span || pc.offset) && "col-pc-".concat(pc.span), widePc && (widePc.span || widePc.offset) && "col-wide-pc-".concat(widePc.span)];
+      return ["col-".concat(span), offset && "offset-".concat(offset), ipad && (ipad.span || ipad.offset) ? "col-ipad-".concat(ipad.span) : '', narrowPc && (narrowPc.span || narrowPc.offset) ? "col-narrow-pc-".concat(narrowPc.span) : '', pc && (pc.span || pc.offset) ? "col-pc-".concat(pc.span) : '', widePc && (widePc.span || widePc.offset) ? "col-wide-pc-".concat(widePc.span) : ''];
     },
     colPadding: function colPadding() {
       return this.gutter / 2 + 'px';
@@ -13208,7 +13203,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52695" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50432" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

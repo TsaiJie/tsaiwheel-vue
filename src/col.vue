@@ -23,7 +23,6 @@
     props: {
       span: {type: [Number, String]},
       offset: {type: [Number, String]},
-      phone: {type: Object, validator},
       ipad: {type: Object, validator},
       narrowPc: {type: Object, validator},
       pc: {type: Object, validator},
@@ -36,16 +35,15 @@
     },
     computed: {
       colClass() {
-        let {span, offset, phone, ipad, narrowPc, pc, widePc} = this
+        let {span, offset, ipad, narrowPc, pc, widePc} = this
 
         return [
           `col-${span}`,
           offset && `offset-${offset}`,
-          (phone && (phone.span || phone.offset)) && `col-phone-${phone.span}`,
-          (ipad && (ipad.span || ipad.offset)) && `col-ipad-${ipad.span}`,
-          (narrowPc && (narrowPc.span || narrowPc.offset)) && `col-narrow-pc-${narrowPc.span}`,
-          (pc && (pc.span || pc.offset)) && `col-pc-${pc.span}`,
-          (widePc && (widePc.span || widePc.offset)) && `col-wide-pc-${widePc.span}`,
+          (ipad && (ipad.span || ipad.offset)) ? `col-ipad-${ipad.span}`: '',
+          (narrowPc && (narrowPc.span || narrowPc.offset)) ? `col-narrow-pc-${narrowPc.span}`:'',
+          (pc && (pc.span || pc.offset)) ? `col-pc-${pc.span}` : '',
+          (widePc && (widePc.span || widePc.offset)) ? `col-wide-pc-${widePc.span}` : '',
         ]
       },
       colPadding() {
@@ -78,24 +76,7 @@
 				margin-left: ($n /24) * 100%;
 			}
 		}
-		@media (max-width: 576px) {
-			$class-prefix: col-phone-;
-			/*.col.col-x*/
-			/*使用scss使用生成多个class*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					width: ($n /24) * 100%;
-				}
-			}
-			$class-prefix: offset-phone-;
-			/*.col.offset-x*/
-			@for $n from 1 through 24 {
-				&.#{$class-prefix}#{$n} {
-					margin-left: ($n /24) * 100%;
-				}
-			}
-		}
-		@media (min-width: 577px) and (max-width: 768px) {
+		@media (min-width: 577px) {
 			$class-prefix: col-ipad-;
 			/*.col.col-x*/
 			/*使用scss使用生成多个class*/
@@ -112,7 +93,7 @@
 				}
 			}
 		}
-		@media (min-width: 769px) and (max-width: 992px) {
+		@media (min-width: 769px) {
 			$class-prefix: col-narrow-pc-;
 			/*.col.col-x*/
 			/*使用scss使用生成多个class*/
@@ -129,7 +110,7 @@
 				}
 			}
 		}
-		@media (min-width: 993px) and (max-width: 1200px) {
+		@media (min-width: 993px) {
 			$class-prefix: col-pc-;
 			/*.col.col-x*/
 			/*使用scss使用生成多个class*/
