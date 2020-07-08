@@ -1,6 +1,7 @@
 import Row from '../src/row'
 import Col from '../src/col'
 import Vue from 'vue'
+const expect = chai.expect
 Vue.config.productionTip = false
 Vue.config.devtools = false
 

@@ -13092,7 +13092,7 @@ var _default = {
       return [].concat(_toConsumableArray(createClasses({
         span: span,
         offset: offset
-      })), _toConsumableArray(createClasses(ipad, 'ipad-')), _toConsumableArray(createClasses(narrowPc, 'narrow-pc-')), _toConsumableArray(createClasses(pc, 'pc-')), _toConsumableArray(createClasses(widePc, 'wide-pc')));
+      })), _toConsumableArray(createClasses(ipad, 'ipad-')), _toConsumableArray(createClasses(narrowPc, 'narrow-pc-')), _toConsumableArray(createClasses(pc, 'pc-')), _toConsumableArray(createClasses(widePc, 'wide-pc-')));
     },
     colPadding: function colPadding() {
       return this.gutter / 2 + 'px';
