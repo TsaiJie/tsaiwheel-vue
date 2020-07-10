@@ -10,6 +10,7 @@ import Header from './layout/header'
 import Content from './layout/content'
 import Footer from './layout/footer'
 import Sider from './layout/sider'
+import plugin from './plugin/plugin'
 
 Vue.component('t-button', Button)
 Vue.component('t-icon', Icon)
@@ -22,6 +23,11 @@ Vue.component('t-header', Header)
 Vue.component('t-content', Content)
 Vue.component('t-footer', Footer)
 Vue.component('t-sider', Sider)
+// 如何实现this.$toast(message)
+// 首先创建vue组件
+// 然后创建相应的plugin vue和plugin关联起来
+// use方法会默认调用 plugin的install(Vue, options)方法 进行注册使用
+Vue.use(plugin)
 
 new Vue({
   el: '#app',
@@ -32,6 +38,9 @@ new Vue({
   methods:{
     inputChange(e){
       console.log(e.target.value)
+    },
+    showToast(){
+      this.$toast("我是 message")
     }
   }
 })

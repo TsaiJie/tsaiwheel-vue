@@ -914,3 +914,18 @@
 .content[data-v-ee4ab2] {
   flex-grow: 1;
 }
+.toast[data-v-de3233] {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 0 16px;
+}
