@@ -57,7 +57,7 @@ new Vue({
           }
         },
         position: position,
-        autoCloseDelay: 30
+        autoClose: 1
       })
     }
   }

@@ -13527,13 +13527,11 @@ var _default = {
   props: {
     // 自动关闭
     autoClose: {
-      type: Boolean,
-      default: true
-    },
-    // 自动关闭延迟的时间
-    autoCloseDelay: {
-      type: Number,
-      default: 50
+      type: [Number, Boolean],
+      default: 2,
+      validator: function validator(value) {
+        return value === false || typeof value === 'number';
+      }
     },
     closeButton: {
       type: Object,
@@ -13572,7 +13570,7 @@ var _default = {
       if (this.autoClose) {
         setTimeout(function () {
           _this.close();
-        }, this.autoCloseDelay * 1000);
+        }, this.autoClose * 1000);
       }
     },
     updateHeight: function updateHeight() {
@@ -13587,7 +13585,8 @@ var _default = {
     },
     close: function close() {
       //移除元素
-      this.$el.remove(); // 注销组件
+      this.$el.remove();
+      this.$emit('close'); // 注销组件
 
       this.$destroy();
     },
@@ -13697,13 +13696,15 @@ var _default = {
     Vue.prototype.$toast = function (message, toastOptions) {
       if (currentToast) {
         currentToast.close();
-        currentToast = null;
       }
 
       currentToast = createToast({
         Vue: Vue,
         message: message,
-        propsData: toastOptions
+        propsData: toastOptions,
+        OnClose: function OnClose() {
+          currentToast = null;
+        }
       });
     };
   }
@@ -13714,7 +13715,8 @@ exports.default = _default;
 function createToast(_ref) {
   var Vue = _ref.Vue,
       message = _ref.message,
-      propsData = _ref.propsData;
+      propsData = _ref.propsData,
+      OnClose = _ref.OnClose;
   // 把Toast转换为构造函数
   var Constructor = Vue.extend(_toast.default); // 创建Toast组件
 
@@ -13724,7 +13726,8 @@ function createToast(_ref) {
 
   toast.$slots.default = [message]; // 组件进行挂载
 
-  toast.$mount(); // 把组件添加到dom中
+  toast.$mount();
+  toast.$on('close', OnClose); // 把组件添加到dom中
 
   document.body.appendChild(toast.$el);
   return toast;
@@ -13816,7 +13819,7 @@ new _vue.default({
           }
         },
         position: position,
-        autoCloseDelay: 30
+        autoClose: 1
       });
     }
   }
@@ -13849,7 +13852,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61403" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55586" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

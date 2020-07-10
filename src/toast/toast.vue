@@ -16,9 +16,13 @@
     name: "WheelToast",
     props: {
       // 自动关闭
-      autoClose: {type: Boolean, default: true},
-      // 自动关闭延迟的时间
-      autoCloseDelay: {type: Number, default: 50},
+      autoClose: {
+        type: [Number,Boolean],
+				default: 2,
+				validator(value) {
+          return value === false || typeof value === 'number'
+        }
+      },
       closeButton: {
         type: Object, default() {
           return {text: '关闭', callback: undefined}
@@ -47,7 +51,7 @@
         if (this.autoClose) {
           setTimeout(() => {
             this.close()
-          }, this.autoCloseDelay * 1000)
+          }, this.autoClose * 1000)
         }
       },
       updateHeight() {
@@ -61,6 +65,7 @@
       close() {
         //移除元素
         this.$el.remove()
+				this.$emit('close')
         // 注销组件
         this.$destroy()
 
