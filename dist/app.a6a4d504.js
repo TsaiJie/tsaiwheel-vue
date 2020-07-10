@@ -13691,25 +13691,43 @@ var _toast = _interopRequireDefault(require("../toast/toast"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var currentToast;
 var _default = {
   install: function install(Vue, options) {
     Vue.prototype.$toast = function (message, toastOptions) {
-      // 把Toast转换为构造函数
-      var Constructor = Vue.extend(_toast.default); // 创建Toast组件
+      if (currentToast) {
+        currentToast.close();
+      }
 
-      var toast = new Constructor({
+      currentToast = createToast({
+        Vue: Vue,
+        message: message,
         propsData: toastOptions
-      }); // 给插槽添加默认内容
-
-      toast.$slots.default = [message]; // 组件进行挂载
-
-      toast.$mount(); // 把组件添加到dom中
-
-      document.body.appendChild(toast.$el);
+      });
     };
   }
-};
+}; // helper
+
 exports.default = _default;
+
+function createToast(_ref) {
+  var Vue = _ref.Vue,
+      message = _ref.message,
+      propsData = _ref.propsData;
+  // 把Toast转换为构造函数
+  var Constructor = Vue.extend(_toast.default); // 创建Toast组件
+
+  var toast = new Constructor({
+    propsData: propsData
+  }); // 给插槽添加默认内容
+
+  toast.$slots.default = [message]; // 组件进行挂载
+
+  toast.$mount(); // 把组件添加到dom中
+
+  document.body.appendChild(toast.$el);
+  return toast;
+}
 },{"../toast/toast":"src/toast/toast.vue"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -13774,19 +13792,6 @@ new _vue.default({
   data: {
     loading1: false,
     message: "1111"
-  },
-  created: function created() {
-    this.$toast("我是 message", {
-      autoCloseDelay: 3,
-      autoClose: false,
-      position: 'middle',
-      closeButton: {
-        text: '知道了',
-        callback: function callback() {
-          console.log("用户说他知道了");
-        }
-      }
-    });
   },
   methods: {
     inputChange: function inputChange(e) {

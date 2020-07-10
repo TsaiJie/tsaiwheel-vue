@@ -35,19 +35,6 @@ new Vue({
     loading1: false,
     message: "1111"
   },
-  created() {
-    this.$toast("我是 message", {
-      autoCloseDelay: 3,
-      autoClose: false,
-      position: 'middle',
-      closeButton: {
-        text: '知道了',
-        callback() {
-          console.log("用户说他知道了");
-        }
-      }
-    })
-  },
   methods: {
     inputChange(e) {
       console.log(e.target.value)
