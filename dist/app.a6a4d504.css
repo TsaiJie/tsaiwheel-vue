@@ -920,7 +920,7 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 14px;
-  height: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   background: rgba(0, 0, 0, 0.75);
@@ -928,4 +928,16 @@
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
   color: white;
   padding: 0 16px;
+}
+.toast .message[data-v-de3233] {
+  padding: 8px 0;
+}
+.toast .close[data-v-de3233] {
+  padding-left: 16px;
+  flex-shrink: 0;
+}
+.toast .line[data-v-de3233] {
+  height: 100%;
+  border-left: 1px solid #666;
+  margin-left: 16px;
 }

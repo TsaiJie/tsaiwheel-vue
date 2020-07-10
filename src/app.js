@@ -31,16 +31,33 @@ Vue.use(plugin)
 
 new Vue({
   el: '#app',
-  data:{
+  data: {
     loading1: false,
     message: "1111"
   },
-  methods:{
-    inputChange(e){
+  created() {
+    this.$toast("我是 message", {
+      closeButton: {
+        text: '知道了',
+        callback() {
+          console.log("用户说他知道了");
+        }
+      }
+    })
+  },
+  methods: {
+    inputChange(e) {
       console.log(e.target.value)
     },
-    showToast(){
-      this.$toast("我是 message")
+    showToast() {
+      this.$toast(" 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字", {
+        closeButton: {
+          text: '知道了',
+          callback() {
+            console.log("用户说他知道了");
+          }
+        },
+      })
     }
   }
 })
