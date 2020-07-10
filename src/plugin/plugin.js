@@ -6,6 +6,7 @@ export default {
     Vue.prototype.$toast = function (message, toastOptions) {
       if(currentToast) {
         currentToast.close()
+        currentToast = null
       }
       currentToast = createToast({Vue, message, propsData: toastOptions})
     }

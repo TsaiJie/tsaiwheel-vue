@@ -13530,7 +13530,7 @@ var _default = {
       type: Boolean,
       default: true
     },
-    // 自动关闭的时间
+    // 自动关闭延迟的时间
     autoCloseDelay: {
       type: Number,
       default: 50
@@ -13582,7 +13582,7 @@ var _default = {
         // 高度从height 变为 min-height之后 子元素就不能继承了
         // 当打印出来的高度和自己看到的不一样时 可能时异步的问题 $nextTick解决异步问题 当数据更新了，在dom中渲染后，自动执行该函数
         // 获取css的高度要使用getBoundingClientRect() 不能使用style.height
-        _this2.$refs.line.style.height = "".concat(_this2.$refs.wrapper.getBoundingClientRect().height, "px");
+        _this2.$refs.line.style.height = "".concat(_this2.$refs.toast.getBoundingClientRect().height, "px");
       });
     },
     close: function close() {
@@ -13612,7 +13612,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { ref: "wrapper", staticClass: "toast", class: _vm.toastClasses },
+    { ref: "toast", staticClass: "toast", class: _vm.toastClasses },
     [
       _c(
         "div",
@@ -13697,6 +13697,7 @@ var _default = {
     Vue.prototype.$toast = function (message, toastOptions) {
       if (currentToast) {
         currentToast.close();
+        currentToast = null;
       }
 
       currentToast = createToast({
@@ -13797,14 +13798,25 @@ new _vue.default({
     inputChange: function inputChange(e) {
       console.log(e.target.value);
     },
-    showToast: function showToast() {
-      this.$toast(" 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字", {
+    showToast1: function showToast1() {
+      this.showToast('top');
+    },
+    showToast2: function showToast2() {
+      this.showToast('middle');
+    },
+    showToast3: function showToast3() {
+      this.showToast('bottom');
+    },
+    showToast: function showToast(position) {
+      this.$toast("toast", {
         closeButton: {
           text: '知道了',
           callback: function callback() {
             console.log("用户说他知道了");
           }
-        }
+        },
+        position: position,
+        autoCloseDelay: 30
       });
     }
   }

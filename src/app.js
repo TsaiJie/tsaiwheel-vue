@@ -39,14 +39,25 @@ new Vue({
     inputChange(e) {
       console.log(e.target.value)
     },
-    showToast() {
-      this.$toast(" 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字 很多文字", {
+    showToast1(){
+      this.showToast('top')
+    },
+    showToast2(){
+      this.showToast('middle')
+    },
+    showToast3(){
+      this.showToast('bottom')
+    },
+    showToast(position) {
+      this.$toast("toast", {
         closeButton: {
           text: '知道了',
           callback() {
             console.log("用户说他知道了");
           }
         },
+        position: position,
+        autoCloseDelay: 30
       })
     }
   }
