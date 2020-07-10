@@ -901,3 +901,16 @@
     margin-left: 100%;
 }
 }
+@charset "UTF-8";
+.layout[data-v-012d82] {
+  /*flex-grow的意思已经很明显了，就是索取父容器的剩余空间，默认值是0*/
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.layout.hasSider[data-v-012d82] {
+  flex-direction: row;
+}
+.content[data-v-ee4ab2] {
+  flex-grow: 1;
+}
