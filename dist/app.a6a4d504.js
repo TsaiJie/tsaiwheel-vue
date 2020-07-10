@@ -12919,7 +12919,7 @@ var _default = {
     algin: {
       type: String,
       validator: function validator(value) {
-        return ['left', 'center', 'right'].includes(value);
+        return ['left', 'center', 'right'].indexOf(value) >= 0;
       }
     }
   },
@@ -13506,6 +13506,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -13544,6 +13547,18 @@ var _default = {
     enableHtml: {
       type: Boolean,
       default: false
+    },
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'bottom', 'middle'].indexOf(value) >= 0;
+      }
+    }
+  },
+  computed: {
+    toastClasses: function toastClasses() {
+      return _defineProperty({}, "position-".concat(this.position), true);
     }
   },
   mounted: function mounted() {
@@ -13595,37 +13610,41 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { ref: "wrapper", staticClass: "toast" }, [
-    _c(
-      "div",
-      { staticClass: "message" },
-      [
-        !_vm.enableHtml
-          ? _vm._t("default")
-          : _c("div", {
-              domProps: { innerHTML: _vm._s(_vm.$slots.default[0]) }
-            })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { ref: "line", staticClass: "line" }),
-    _vm._v(" "),
-    _vm.closeButton
-      ? _c(
-          "span",
-          {
-            staticClass: "close",
-            on: {
-              click: function($event) {
-                return _vm.clickClose()
+  return _c(
+    "div",
+    { ref: "wrapper", staticClass: "toast", class: _vm.toastClasses },
+    [
+      _c(
+        "div",
+        { staticClass: "message" },
+        [
+          !_vm.enableHtml
+            ? _vm._t("default")
+            : _c("div", {
+                domProps: { innerHTML: _vm._s(_vm.$slots.default[0]) }
+              })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { ref: "line", staticClass: "line" }),
+      _vm._v(" "),
+      _vm.closeButton
+        ? _c(
+            "span",
+            {
+              staticClass: "close",
+              on: {
+                click: function($event) {
+                  return _vm.clickClose()
+                }
               }
-            }
-          },
-          [_vm._v("\n\t\t" + _vm._s(_vm.closeButton.text) + "\n\t")]
-        )
-      : _vm._e()
-  ])
+            },
+            [_vm._v("\n\t\t" + _vm._s(_vm.closeButton.text) + "\n\t")]
+          )
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13758,6 +13777,9 @@ new _vue.default({
   },
   created: function created() {
     this.$toast("我是 message", {
+      autoCloseDelay: 3,
+      autoClose: false,
+      position: 'middle',
       closeButton: {
         text: '知道了',
         callback: function callback() {

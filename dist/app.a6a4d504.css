@@ -916,9 +916,7 @@
 }
 .toast[data-v-de3233] {
   position: fixed;
-  top: 0;
   left: 50%;
-  transform: translateX(-50%);
   font-size: 14px;
   min-height: 40px;
   display: flex;
@@ -940,4 +938,16 @@
   height: 100%;
   border-left: 1px solid #666;
   margin-left: 16px;
+}
+.toast.position-top[data-v-de3233] {
+  top: 0;
+  transform: translateX(-50%);
+}
+.toast.position-bottom[data-v-de3233] {
+  bottom: 0;
+  transform: translateX(-50%);
+}
+.toast.position-middle[data-v-de3233] {
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
