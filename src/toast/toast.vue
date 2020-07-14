@@ -54,9 +54,10 @@
           }, this.autoClose * 1000)
         }
       },
+      // 高度从height 变为 min-height之后 子元素就不能继承了
+
       updateHeight() {
         this.$nextTick(() => {
-          // 高度从height 变为 min-height之后 子元素就不能继承了
           // 当打印出来的高度和自己看到的不一样时 可能时异步的问题 $nextTick解决异步问题 当数据更新了，在dom中渲染后，自动执行该函数
           // 获取css的高度要使用getBoundingClientRect() 不能使用style.height
           this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`;
