@@ -37,7 +37,7 @@
 <style lang="scss" scoped>
 	.tabs-panel {
 		&.active {
-			/*background: red;*/
+			padding: 1em;
 		}
 	}
 </style>

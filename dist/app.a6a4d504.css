@@ -991,16 +991,21 @@
   height: 40px;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid red;
+  border: 1px solid #ddd;
 }
 .tabs-head > .actions-wrapper[data-v-826ee6] {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1em;
 }
 .tabs-head > .line[data-v-826ee6] {
   position: absolute;
   bottom: 0;
   border-bottom: 1px solid skyblue;
   width: 100px;
+  transition: all 250ms;
 }
 .tabs-item[data-v-81204a] {
   flex-shrink: 0;
@@ -1015,5 +1020,5 @@
   color: skyblue;
 }
 .tabs-panel.active[data-v-0a0f56] {
-  /*background: red;*/
+  padding: 1em;
 }
