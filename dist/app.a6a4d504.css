@@ -1019,6 +1019,9 @@
   background: #eee;
   color: skyblue;
 }
+.tabs-item.disabled[data-v-81204a] {
+  color: grey;
+}
 .tabs-panel.active[data-v-0a0f56] {
   padding: 1em;
 }
