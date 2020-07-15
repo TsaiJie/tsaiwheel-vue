@@ -13739,6 +13739,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _vue = _interopRequireDefault(require("vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //
 //
 //
@@ -13760,7 +13765,19 @@ var _default = {
       }
     }
   },
-  created: function created() {// this.$emit('update:selected', 'xxx')
+  data: function data() {
+    return {
+      eventBus: new _vue.default()
+    };
+  },
+  created: function created() {
+    // this.$emit('update:selected', '这是 this $emit 出来的数据')
+    this.event.$emit('update:selected', '这是 this eventBus $emit 出来的数据');
+  },
+  provide: function provide() {
+    return {
+      eventBus: this.eventBus
+    };
   }
 };
 exports.default = _default;
@@ -13811,7 +13828,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/tabs/tabs-head.vue":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js"}],"src/tabs/tabs-head.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -13960,10 +13977,26 @@ exports.default = void 0;
 //
 var _default = {
   name: "WheelTabsItem",
+  inject: ['eventBus'],
   props: {
     disabled: {
       type: Boolean,
       default: false
+    },
+    name: {
+      type: String | Number,
+      required: true
+    }
+  },
+  created: function created() {
+    console.log(this.eventBus);
+    this.eventBus.$on('update:selected', function (name) {
+      console.log(name);
+    });
+  },
+  methods: {
+    xxx: function xxx() {
+      this.eventBus.$emit('update:selected', this.name);
     }
   }
 };
@@ -13980,7 +14013,12 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tabs-item" }, [_vm._t("default")], 2)
+  return _c(
+    "div",
+    { staticClass: "tabs-item", on: { click: _vm.xxx } },
+    [_vm._t("default")],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -14029,7 +14067,13 @@ exports.default = void 0;
 //
 //
 var _default = {
-  name: "WheelTabsPanel"
+  name: "WheelTabsPanel",
+  inject: ['eventBus'],
+  created: function created() {
+    this.eventBus.$on("update:selected", function (name) {
+      console.log(name);
+    });
+  }
 };
 exports.default = _default;
         var $0a0f56 = exports.default || module.exports;
@@ -14188,6 +14232,10 @@ new _vue.default({
         position: position,
         autoClose: 1
       });
+    },
+    yyy: function yyy(data) {
+      console.log('yyyyy');
+      console.log(data);
     }
   }
 });

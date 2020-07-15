@@ -74,6 +74,10 @@ new Vue({
         position: position,
         autoClose: 1
       })
+    },
+    yyy(data){
+      console.log('yyyyy')
+      console.log(data);
     }
   }
 })

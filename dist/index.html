@@ -30,7 +30,7 @@
 <div id="app">
 <!--	<t-tabs selected="selectedTab" @update:selected="selectedTab = $event">-->
 <!--	selected="selectedTab" @update:selected="selectedTab = $event"  等价于 selected.sync="selectedTab"-->
-	<t-tabs :selected.sync="selectedTab">
+	<t-tabs :selected.sync="selectedTab" @update:selected="yyy">
 		<t-tabs-head>
 			<template slot="actions">
 				<button>设置</button>
