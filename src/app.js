@@ -12,6 +12,13 @@ import Footer from './layout/footer'
 import Sider from './layout/sider'
 import plugin from './plugin/plugin'
 
+import Tabs from './tabs/tabs'
+import TabsHead from './tabs/tabs-head'
+import TabsBody from './tabs/tabs-body'
+import TabsItem from './tabs/tabs-item'
+import TabsPanel from './tabs/tabs-panel'
+
+
 Vue.component('t-button', Button)
 Vue.component('t-icon', Icon)
 Vue.component('t-button-group', ButtonGroup)
@@ -23,6 +30,14 @@ Vue.component('t-header', Header)
 Vue.component('t-content', Content)
 Vue.component('t-footer', Footer)
 Vue.component('t-sider', Sider)
+
+Vue.component('t-tabs', Tabs)
+Vue.component('t-tabs-head', TabsHead)
+Vue.component('t-tabs-body', TabsBody)
+Vue.component('t-tabs-item', TabsItem)
+Vue.component('t-tabs-panel', TabsPanel)
+
+
 // 如何实现this.$toast(message)
 // 首先创建vue组件
 // 然后创建相应的plugin vue和plugin关联起来
@@ -43,7 +58,7 @@ new Vue({
       this.showToast('top')
     },
     showToast2(){
-      this.showToast('middle')
+       this.showToast('middle')
     },
     showToast3(){
       this.showToast('bottom')

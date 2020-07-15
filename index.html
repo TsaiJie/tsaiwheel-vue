@@ -32,10 +32,30 @@
 </head>
 <body>
 <div id="app">
-	<button @click="showToast">点我</button>
-	<button @click="showToast1">top</button>
-	<button @click="showToast2">middle</button>
-	<button @click="showToast3">bottom</button>
+<!--	<t-tabs selected="selectedTab" @update:selected="selectedTab = $event">-->
+<!--	selected="selectedTab" @update:selected="selectedTab = $event"  等价于 selected.sync="selectedTab"-->
+	<t-tabs :selected.sync="selectedTab" >
+		<t-tabs-head >
+			<template slot="actions">
+				<button>设置</button>
+			</template>
+			<t-tabs-item name="woman">
+				<t-icon name="settings"></t-icon>
+				美女
+			</t-tabs-item>
+			<t-tabs-item name="finance" disabled>
+				财经
+			</t-tabs-item>
+			<t-tabs-item name="sports">
+				体育
+			</t-tabs-item>
+		</t-tabs-head>
+		<t-tabs-body>
+			<t-tabs-panel name="woman">美女相关咨询</t-tabs-panel>
+			<t-tabs-panel name="finance">财经相关咨询</t-tabs-panel>
+			<t-tabs-panel name="sports">体育相关咨询</t-tabs-panel>
+		</t-tabs-body>
+	</t-tabs>
 </div>
 <script src="./src/app.js"></script>
 
