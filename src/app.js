@@ -48,7 +48,8 @@ new Vue({
   el: '#app',
   data: {
     loading1: false,
-    message: "1111"
+    message: "1111",
+    selectedTab: 'sports'
   },
   methods: {
     inputChange(e) {

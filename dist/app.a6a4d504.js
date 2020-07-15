@@ -13770,9 +13770,9 @@ var _default = {
       eventBus: new _vue.default()
     };
   },
-  created: function created() {
-    // this.$emit('update:selected', '这是 this $emit 出来的数据')
-    this.event.$emit('update:selected', '这是 this eventBus $emit 出来的数据');
+  mounted: function mounted() {
+    this.$emit('update:selected', '这是 this $emit 出来的数据');
+    this.eventBus.$emit('update:selected', this.selected);
   },
   provide: function provide() {
     return {
@@ -13842,6 +13842,9 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
 var _default = {
   name: "WheelTabsHead"
 };
@@ -13861,7 +13864,11 @@ exports.default = _default;
   return _c(
     "div",
     { staticClass: "tabs-head" },
-    [_vm._t("default"), _vm._v(" "), _vm._t("actions")],
+    [
+      _vm._t("default"),
+      _vm._v(" "),
+      _c("div", { staticClass: "actions-wrapper" }, [_vm._t("actions")], 2)
+    ],
     2
   )
 }
@@ -13978,6 +13985,11 @@ exports.default = void 0;
 var _default = {
   name: "WheelTabsItem",
   inject: ['eventBus'],
+  data: function data() {
+    return {
+      active: false
+    };
+  },
   props: {
     disabled: {
       type: Boolean,
@@ -13988,10 +14000,18 @@ var _default = {
       required: true
     }
   },
+  computed: {
+    classes: function classes() {
+      return {
+        active: this.active
+      };
+    }
+  },
   created: function created() {
-    console.log(this.eventBus);
+    var _this = this;
+
     this.eventBus.$on('update:selected', function (name) {
-      console.log(name);
+      _this.active = name === _this.name;
     });
   },
   methods: {
@@ -14015,7 +14035,7 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "tabs-item", on: { click: _vm.xxx } },
+    { staticClass: "tabs-item", class: _vm.classes, on: { click: _vm.xxx } },
     [_vm._t("default")],
     2
   )
@@ -14069,9 +14089,29 @@ exports.default = void 0;
 var _default = {
   name: "WheelTabsPanel",
   inject: ['eventBus'],
+  data: function data() {
+    return {
+      active: false
+    };
+  },
+  props: {
+    name: {
+      type: String | Number,
+      required: true
+    }
+  },
+  computed: {
+    classes: function classes() {
+      return {
+        active: this.active
+      };
+    }
+  },
   created: function created() {
+    var _this = this;
+
     this.eventBus.$on("update:selected", function (name) {
-      console.log(name);
+      _this.active = name === _this.name;
     });
   }
 };
@@ -14088,7 +14128,14 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tabs-panel" }, [_vm._t("default")], 2)
+  return _vm.active
+    ? _c(
+        "div",
+        { staticClass: "tabs-panel", class: _vm.classes },
+        [_vm._t("default")],
+        2
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -14206,7 +14253,8 @@ new _vue.default({
   el: '#app',
   data: {
     loading1: false,
-    message: "1111"
+    message: "1111",
+    selectedTab: 'sports'
   },
   methods: {
     inputChange: function inputChange(e) {

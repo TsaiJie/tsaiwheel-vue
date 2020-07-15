@@ -985,3 +985,24 @@
   transform: translateY(-50%);
   animation: fade-in-data-v-de3233 300ms;
 }
+.tabs-head[data-v-826ee6] {
+  display: flex;
+  height: 40px;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid red;
+}
+.tabs-head > .actions-wrapper[data-v-826ee6] {
+  margin-left: auto;
+}
+.tabs-item[data-v-81204a] {
+  flex-shrink: 0;
+  padding: 0 2em;
+  cursor: pointer;
+}
+.tabs-item.active[data-v-81204a] {
+  background: red;
+}
+.tabs-panel.active[data-v-0a0f56] {
+  /*background: red;*/
+}
