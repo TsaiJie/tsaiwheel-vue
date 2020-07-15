@@ -986,6 +986,7 @@
   animation: fade-in-data-v-de3233 300ms;
 }
 .tabs-head[data-v-826ee6] {
+  position: relative;
   display: flex;
   height: 40px;
   justify-content: flex-start;
@@ -995,13 +996,23 @@
 .tabs-head > .actions-wrapper[data-v-826ee6] {
   margin-left: auto;
 }
+.tabs-head > .line[data-v-826ee6] {
+  position: absolute;
+  bottom: 0;
+  border-bottom: 1px solid skyblue;
+  width: 100px;
+}
 .tabs-item[data-v-81204a] {
   flex-shrink: 0;
   padding: 0 2em;
+  height: 100%;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
 .tabs-item.active[data-v-81204a] {
-  background: red;
+  background: #eee;
+  color: skyblue;
 }
 .tabs-panel.active[data-v-0a0f56] {
   /*background: red;*/

@@ -13771,8 +13771,17 @@ var _default = {
     };
   },
   mounted: function mounted() {
-    this.$emit('update:selected', '这是 this $emit 出来的数据');
-    this.eventBus.$emit('update:selected', this.selected);
+    var _this = this;
+
+    this.$children.forEach(function (vm) {
+      if (vm.$options.name === 'WheelTabsHead') {
+        vm.$children.forEach(function (childVm) {
+          if (childVm.$options.name === 'WheelTabsItem' && childVm.name === _this.selected) {
+            _this.eventBus.$emit('update:selected', _this.selected, childVm);
+          }
+        });
+      }
+    });
   },
   provide: function provide() {
     return {
@@ -13845,8 +13854,16 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
-  name: "WheelTabsHead"
+  name: "WheelTabsHead",
+  inject: ['eventBus'],
+  created: function created() {
+    this.eventBus.$on('update:selected', function (item, vm) {
+      console.log(item);
+      console.log(vm);
+    });
+  }
 };
 exports.default = _default;
         var $826ee6 = exports.default || module.exports;
@@ -13866,6 +13883,8 @@ exports.default = _default;
     { staticClass: "tabs-head" },
     [
       _vm._t("default"),
+      _vm._v(" "),
+      _c("div", { ref: "line", staticClass: "line" }),
       _vm._v(" "),
       _c("div", { staticClass: "actions-wrapper" }, [_vm._t("actions")], 2)
     ],
@@ -14016,7 +14035,7 @@ var _default = {
   },
   methods: {
     xxx: function xxx() {
-      this.eventBus.$emit('update:selected', this.name);
+      this.eventBus.$emit('update:selected', this.name, this);
     }
   }
 };
