@@ -18,6 +18,7 @@ import TabsBody from './tabs/tabs-body'
 import TabsItem from './tabs/tabs-item'
 import TabsPanel from './tabs/tabs-panel'
 
+import Popover from './popover/popover'
 
 Vue.component('t-button', Button)
 Vue.component('t-icon', Icon)
@@ -36,6 +37,8 @@ Vue.component('t-tabs-head', TabsHead)
 Vue.component('t-tabs-body', TabsBody)
 Vue.component('t-tabs-item', TabsItem)
 Vue.component('t-tabs-panel', TabsPanel)
+
+Vue.component('t-popover', Popover)
 
 
 // 如何实现this.$toast(message)

@@ -14,6 +14,7 @@
 		body {
 			font-size: var(--font-size);
 		}
+
 		:root {
 			--button-height: 32px;
 			--font-size: 1 4px;
@@ -27,31 +28,44 @@
 
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
-<div id="app">
-<!--	<t-tabs selected="selectedTab" @update:selected="selectedTab = $event">-->
-<!--	selected="selectedTab" @update:selected="selectedTab = $event"  等价于 selected.sync="selectedTab"-->
-	<t-tabs :selected.sync="selectedTab" @update:selected="yyy">
-		<t-tabs-head>
-			<template slot="actions">
-				<t-button>设置</t-button>
-			</template>
-			<t-tabs-item name="woman">
-				<t-icon name="settings"></t-icon>
-				美女
-			</t-tabs-item>
-			<t-tabs-item name="finance" disabled="">
-				财经
-			</t-tabs-item>
-			<t-tabs-item name="sports">
-				体育
-			</t-tabs-item>
-		</t-tabs-head>
-		<t-tabs-body>
-			<t-tabs-panel name="woman">美女相关咨询</t-tabs-panel>
-			<t-tabs-panel name="finance">财经相关咨询</t-tabs-panel>
-			<t-tabs-panel name="sports">体育相关咨询</t-tabs-panel>
-		</t-tabs-body>
-	</t-tabs>
+<div id="app" style="margin: 20px;">
+	<!--	<t-tabs selected="selectedTab" @update:selected="selectedTab = $event">-->
+	<!--	selected="selectedTab" @update:selected="selectedTab = $event"  等价于 selected.sync="selectedTab"-->
+	<!--	<t-tabs :selected.sync="selectedTab" @update:selected="yyy">-->
+	<!--		<t-tabs-head >-->
+	<!--			<template slot="actions">-->
+	<!--				<t-button>设置</t-button>-->
+	<!--			</template>-->
+	<!--			<t-tabs-item name="woman">-->
+	<!--				<t-icon name="settings"></t-icon>-->
+	<!--				美女-->
+	<!--			</t-tabs-item>-->
+	<!--			<t-tabs-item name="finance" disabled>-->
+	<!--				财经-->
+	<!--			</t-tabs-item>-->
+	<!--			<t-tabs-item name="sports">-->
+	<!--				体育-->
+	<!--			</t-tabs-item>-->
+	<!--		</t-tabs-head>-->
+	<!--		<t-tabs-body>-->
+	<!--			<t-tabs-panel name="woman">美女相关咨询</t-tabs-panel>-->
+	<!--			<t-tabs-panel name="finance">财经相关咨询</t-tabs-panel>-->
+	<!--			<t-tabs-panel name="sports">体育相关咨询</t-tabs-panel>-->
+	<!--		</t-tabs-body>-->
+	<!--	</t-tabs>-->
+
+	<t-popover>
+		<template slot="content">
+			<div>popover</div>
+		</template>
+		<button>点我</button>
+	</t-popover>
+	<t-popover>
+		<template slot="content">
+			<div>popover</div>
+		</template>
+		<button>点我</button>
+	</t-popover>
 
 </div>
 <script src="/app.a6a4d504.js"></script>

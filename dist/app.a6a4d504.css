@@ -1025,3 +1025,15 @@
 .tabs-panel.active[data-v-0a0f56] {
   padding: 1em;
 }
+.popover[data-v-2f198c] {
+  display: inline-flex;
+  vertical-align: top;
+  position: relative;
+}
+.popover .content-wrapper[data-v-2f198c] {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  border: 1px solid red;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
