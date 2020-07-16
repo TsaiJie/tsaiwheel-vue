@@ -17,7 +17,7 @@
       this.eventBus.$on('update:selected',(item, vm)=>{
         let {width,  left} = vm.$el.getBoundingClientRect()
 				this.$refs.line.style.width = `${width}px`
-				this.$refs.line.style.left = `${left}px`
+				this.$refs.line.style.transform = `translateX(${left}px)`
       })
     }
 

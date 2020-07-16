@@ -13867,7 +13867,7 @@ var _default = {
           left = _vm$$el$getBoundingCl.left;
 
       _this.$refs.line.style.width = "".concat(width, "px");
-      _this.$refs.line.style.left = "".concat(left, "px");
+      _this.$refs.line.style.transform = "translateX(".concat(left, "px)");
     });
   }
 };
@@ -14346,7 +14346,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61586" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53140" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
