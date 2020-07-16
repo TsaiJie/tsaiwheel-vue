@@ -27,6 +27,10 @@
 			}
 		},
 		mounted() {
+      // $children 只能获取子组件 不能获取子元素
+      if (this.$children.length === 0){
+        console.warn && console.warn('tabs的子组件应该是tabs-head和tabs-body， 但是没有写子组件')
+			}
       this.$children.forEach((vm) => {
 				if (vm.$options.name === 'WheelTabsHead') {
 				  vm.$children.forEach((childVm) => {

@@ -32,14 +32,17 @@
       }
     },
     created() {
-      this.eventBus.$on('update:selected', (name) => {
+      if (this.eventBus){
+        this.eventBus.$on('update:selected', (name) => {
         this.active = name === this.name;
       })
+			}
+
     },
     methods: {
       onClick() {
         if (this.disabled) return
-        this.eventBus.$emit('update:selected', this.name, this)
+        this.eventBus && this.eventBus.$emit('update:selected', this.name, this)
       }
     }
   }

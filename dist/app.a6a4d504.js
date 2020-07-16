@@ -13773,6 +13773,11 @@ var _default = {
   mounted: function mounted() {
     var _this = this;
 
+    // $children 只能获取子组件 不能获取子元素
+    if (this.$children.length === 0) {
+      console.warn && console.warn('tabs的子组件应该是tabs-head和tabs-body， 但是没有写子组件');
+    }
+
     this.$children.forEach(function (vm) {
       if (vm.$options.name === 'WheelTabsHead') {
         vm.$children.forEach(function (childVm) {
@@ -14036,14 +14041,16 @@ var _default = {
   created: function created() {
     var _this = this;
 
-    this.eventBus.$on('update:selected', function (name) {
-      _this.active = name === _this.name;
-    });
+    if (this.eventBus) {
+      this.eventBus.$on('update:selected', function (name) {
+        _this.active = name === _this.name;
+      });
+    }
   },
   methods: {
     onClick: function onClick() {
       if (this.disabled) return;
-      this.eventBus.$emit('update:selected', this.name, this);
+      this.eventBus && this.eventBus.$emit('update:selected', this.name, this);
     }
   }
 };
@@ -14346,7 +14353,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53140" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59681" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
