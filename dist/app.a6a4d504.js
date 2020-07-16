@@ -14239,32 +14239,48 @@ var _default = {
     };
   },
   methods: {
-    xxx: function xxx() {
+    positionContent: function positionContent() {
+      // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
+      document.body.appendChild(this.$refs.contentWrapper); // top, left 可视范围的 要加上 scrollY滚动条的
+
+      var _this$$refs$triggerWr = this.$refs.triggerWrapper.getBoundingClientRect(),
+          top = _this$$refs$triggerWr.top,
+          left = _this$$refs$triggerWr.left;
+
+      this.$refs.contentWrapper.style.top = top + scrollY + 'px';
+      this.$refs.contentWrapper.style.left = left + scrollX + 'px';
+    },
+    onClickDocument: function onClickDocument(e) {
+      if (this.$refs.contentWrapper && this.$refs.contentWrapper.contains(e.target)) {
+        return;
+      }
+
+      this.close();
+    },
+    close: function close() {
+      this.visible = false;
+      document.removeEventListener('click', this.onClickDocument);
+    },
+    open: function open() {
       var _this = this;
 
-      this.visible = !this.visible;
-
-      if (this.visible === true) {
-        this.$nextTick(function () {
-          // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
-          document.body.appendChild(_this.$refs.contentWrapper); // top, left 可视范围的 要加上 scrollY滚动条的
-
-          var _this$$refs$triggerWr = _this.$refs.triggerWrapper.getBoundingClientRect(),
-              top = _this$$refs$triggerWr.top,
-              left = _this$$refs$triggerWr.left;
-
-          _this.$refs.contentWrapper.style.top = top + scrollY + 'px';
-          _this.$refs.contentWrapper.style.left = left + scrollX + 'px'; // x.bind() 会生成一个新的函数不再是原来的函数了
-
-          var eventHandle = function eventHandle() {
-            _this.visible = false; // 每次新增函数的时候 要移除之前的函数 为document移除点击函数
-
-            document.removeEventListener('click', eventHandle);
-          }; // 为document监听点击函数， 当监听函数触发后 然后再移除这个函数
+      this.visible = true;
+      setTimeout(function () {
+        // 调整弹窗的位置
+        _this.positionContent(); // 为document监听点击函数， 当监听函数触发后 然后再移除这个函数
 
 
-          document.addEventListener('click', eventHandle);
-        });
+        document.addEventListener('click', _this.onClickDocument);
+      });
+    },
+    onClick: function onClick(event) {
+      if (this.$refs.triggerWrapper.contains(event.target)) {
+        //看是否点击的是按钮部分
+        if (this.visible === true) {
+          this.close();
+        } else {
+          this.open();
+        }
       }
     }
   },
@@ -14285,28 +14301,12 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "popover",
-      on: {
-        click: function($event) {
-          $event.stopPropagation()
-          return _vm.xxx($event)
-        }
-      }
-    },
+    { ref: "popover", staticClass: "popover", on: { click: _vm.onClick } },
     [
       _vm.visible
         ? _c(
             "div",
-            {
-              ref: "contentWrapper",
-              staticClass: "content-wrapper",
-              on: {
-                click: function($event) {
-                  $event.stopPropagation()
-                }
-              }
-            },
+            { ref: "contentWrapper", staticClass: "content-wrapper" },
             [_vm._t("content")],
             2
           )
@@ -14464,9 +14464,8 @@ new _vue.default({
         autoClose: 1
       });
     },
-    yyy: function yyy(data) {
+    yyy: function yyy() {
       console.log('yyyyy');
-      console.log(data);
     }
   }
 });

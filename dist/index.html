@@ -28,8 +28,7 @@
 
 <link rel="stylesheet" href="/app.a6a4d504.css"></head>
 <body>
-<div class="test" style="border: 10px solid green; height: 1000px"></div>
-<div id="app" style="margin: 50px; border: 1px solid red">
+<div id="app" style="margin: 50px; border: 1px solid red; overflow: hidden" @click="yyy">
 	<!--	<t-tabs selected="selectedTab" @update:selected="selectedTab = $event">-->
 	<!--	selected="selectedTab" @update:selected="selectedTab = $event"  等价于 selected.sync="selectedTab"-->
 	<!--	<t-tabs :selected.sync="selectedTab" @update:selected="yyy">-->
@@ -54,7 +53,6 @@
 	<!--			<t-tabs-panel name="sports">体育相关咨询</t-tabs-panel>-->
 	<!--		</t-tabs-body>-->
 	<!--	</t-tabs>-->
-
 	<t-popover>
 		<template slot="content">
 			<div>popover</div>

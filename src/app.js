@@ -79,9 +79,8 @@ new Vue({
         autoClose: 1
       })
     },
-    yyy(data){
+    yyy(){
       console.log('yyyyy')
-      console.log(data);
     }
   }
 })
