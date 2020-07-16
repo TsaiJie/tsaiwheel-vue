@@ -14226,6 +14226,11 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   name: "WheelPopover",
   data: function data() {
@@ -14240,11 +14245,19 @@ var _default = {
       this.visible = !this.visible;
 
       if (this.visible === true) {
-        setTimeout(function () {
-          // x.bind() 会生成一个新的函数不再是原来的函数了
+        this.$nextTick(function () {
+          // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
+          document.body.appendChild(_this.$refs.contentWrapper); // top, left 可视范围的 要加上 scrollY滚动条的
+
+          var _this$$refs$triggerWr = _this.$refs.triggerWrapper.getBoundingClientRect(),
+              top = _this$$refs$triggerWr.top,
+              left = _this$$refs$triggerWr.left;
+
+          _this.$refs.contentWrapper.style.top = top + scrollY + 'px';
+          _this.$refs.contentWrapper.style.left = left + scrollX + 'px'; // x.bind() 会生成一个新的函数不再是原来的函数了
+
           var eventHandle = function eventHandle() {
-            _this.visible = false;
-            console.log('document 隐藏'); // 每次新增函数的时候 要移除之前的函数 为document移除点击函数
+            _this.visible = false; // 每次新增函数的时候 要移除之前的函数 为document移除点击函数
 
             document.removeEventListener('click', eventHandle);
           }; // 为document监听点击函数， 当监听函数触发后 然后再移除这个函数
@@ -14252,11 +14265,10 @@ var _default = {
 
           document.addEventListener('click', eventHandle);
         });
-      } else {
-        console.log('组件隐藏');
       }
     }
-  }
+  },
+  mounted: function mounted() {}
 };
 exports.default = _default;
         var $2f198c = exports.default || module.exports;
@@ -14287,6 +14299,7 @@ exports.default = _default;
         ? _c(
             "div",
             {
+              ref: "contentWrapper",
               staticClass: "content-wrapper",
               on: {
                 click: function($event) {
@@ -14299,9 +14312,8 @@ exports.default = _default;
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm._t("default")
-    ],
-    2
+      _c("span", { ref: "triggerWrapper" }, [_vm._t("default")], 2)
+    ]
   )
 }
 var staticRenderFns = []
