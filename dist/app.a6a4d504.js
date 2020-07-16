@@ -14224,6 +14224,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   name: "WheelPopover",
   data: function data() {
@@ -14233,7 +14235,26 @@ var _default = {
   },
   methods: {
     xxx: function xxx() {
+      var _this = this;
+
       this.visible = !this.visible;
+
+      if (this.visible === true) {
+        setTimeout(function () {
+          // x.bind() 会生成一个新的函数不再是原来的函数了
+          var eventHandle = function eventHandle() {
+            _this.visible = false;
+            console.log('document 隐藏'); // 每次新增函数的时候 要移除之前的函数 为document移除点击函数
+
+            document.removeEventListener('click', eventHandle);
+          }; // 为document监听点击函数， 当监听函数触发后 然后再移除这个函数
+
+
+          document.addEventListener('click', eventHandle);
+        });
+      } else {
+        console.log('组件隐藏');
+      }
     }
   }
 };
@@ -14252,10 +14273,30 @@ exports.default = _default;
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "popover", on: { click: _vm.xxx } },
+    {
+      staticClass: "popover",
+      on: {
+        click: function($event) {
+          $event.stopPropagation()
+          return _vm.xxx($event)
+        }
+      }
+    },
     [
       _vm.visible
-        ? _c("div", { staticClass: "content-wrapper" }, [_vm._t("content")], 2)
+        ? _c(
+            "div",
+            {
+              staticClass: "content-wrapper",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                }
+              }
+            },
+            [_vm._t("content")],
+            2
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm._t("default")
@@ -14445,7 +14486,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65257" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60063" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
