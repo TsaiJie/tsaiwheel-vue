@@ -30,11 +30,11 @@
           return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
         }
       },
-			trigger: {
+      trigger: {
         type: String,
         default: 'click',
         validator(value) {
-          return ['click','hover'].indexOf(value) >= 0
+          return ['click', 'hover'].indexOf(value) >= 0
         }
       }
     },
@@ -43,23 +43,37 @@
         visible: false
       }
     },
-		mounted() {
-      if (this.trigger === 'click'){
-        this.$refs.popover.addEventListener('click', this.onClick)
-			} else {
-        this.$refs.popover.addEventListener('mouseenter', this.open)
-        this.$refs.popover.addEventListener('mouseleave', this.close)
-			}
+    mounted() {
+      this.addPopoverListeners()
     },
-		destroyed() {
-      if (this.trigger === 'click'){
-        this.$refs.popover.removeEventListener('click', this.onClick)
-			} else {
-        this.$refs.popover.removeEventListener('mouseenter', this.open)
-        this.$refs.popover.removeEventListener('mouseleave', this.close)
-			}
+    beforeDestroy() {
+			this.putBackContent()
+			this.removePopoverListeners()
     },
     methods: {
+      addPopoverListeners () {
+        if (this.trigger === 'click') {
+          this.$refs.popover.addEventListener('click', this.onClick)
+        } else {
+          this.$refs.popover.addEventListener('mouseenter', this.open)
+          this.$refs.popover.addEventListener('mouseleave', this.close)
+        }
+      },
+      removePopoverListeners() {
+        if (this.trigger === 'click') {
+          this.$refs.popover.removeEventListener('click', this.onClick)
+        } else {
+          this.$refs.popover.removeEventListener('mouseenter', this.open)
+          this.$refs.popover.removeEventListener('mouseleave', this.close)
+        }
+      },
+      putBackContent() {
+        const {contentWrapper, popover} = this.$refs
+        if (!contentWrapper) {
+          return
+        }
+        popover.appendChild(contentWrapper)
+      },
       positionContent() {
         // top, left 可视范围的 要加上 scrollY滚动条的
         let {contentWrapper, triggerWrapper} = this.$refs

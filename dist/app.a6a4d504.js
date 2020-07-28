@@ -14267,27 +14267,45 @@ var _default = {
     };
   },
   mounted: function mounted() {
-    if (this.trigger === 'click') {
-      this.$refs.popover.addEventListener('click', this.onClick);
-    } else {
-      this.$refs.popover.addEventListener('mouseenter', this.open);
-      this.$refs.popover.addEventListener('mouseleave', this.close);
-    }
+    this.addPopoverListeners();
   },
-  destroyed: function destroyed() {
-    if (this.trigger === 'click') {
-      this.$refs.popover.removeEventListener('click', this.onClick);
-    } else {
-      this.$refs.popover.removeEventListener('mouseenter', this.open);
-      this.$refs.popover.removeEventListener('mouseleave', this.close);
-    }
+  beforeDestroy: function beforeDestroy() {
+    this.putBackContent();
+    this.removePopoverListeners();
   },
   methods: {
-    positionContent: function positionContent() {
-      // top, left 可视范围的 要加上 scrollY滚动条的
+    addPopoverListeners: function addPopoverListeners() {
+      if (this.trigger === 'click') {
+        this.$refs.popover.addEventListener('click', this.onClick);
+      } else {
+        this.$refs.popover.addEventListener('mouseenter', this.open);
+        this.$refs.popover.addEventListener('mouseleave', this.close);
+      }
+    },
+    removePopoverListeners: function removePopoverListeners() {
+      if (this.trigger === 'click') {
+        this.$refs.popover.removeEventListener('click', this.onClick);
+      } else {
+        this.$refs.popover.removeEventListener('mouseenter', this.open);
+        this.$refs.popover.removeEventListener('mouseleave', this.close);
+      }
+    },
+    putBackContent: function putBackContent() {
       var _this$$refs = this.$refs,
           contentWrapper = _this$$refs.contentWrapper,
-          triggerWrapper = _this$$refs.triggerWrapper; // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
+          popover = _this$$refs.popover;
+
+      if (!contentWrapper) {
+        return;
+      }
+
+      popover.appendChild(contentWrapper);
+    },
+    positionContent: function positionContent() {
+      // top, left 可视范围的 要加上 scrollY滚动条的
+      var _this$$refs2 = this.$refs,
+          contentWrapper = _this$$refs2.contentWrapper,
+          triggerWrapper = _this$$refs2.triggerWrapper; // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
 
       document.body.appendChild(contentWrapper); //居中对齐
 
@@ -14574,7 +14592,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58342" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59414" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
