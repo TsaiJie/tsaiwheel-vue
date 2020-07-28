@@ -12483,14 +12483,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $f73e00 = exports.default || module.exports;
+        var $104608 = exports.default || module.exports;
       
-      if (typeof $f73e00 === 'function') {
-        $f73e00 = $f73e00.options;
+      if (typeof $104608 === 'function') {
+        $104608 = $104608.options;
       }
     
         /* template */
-        Object.assign($f73e00, (function () {
+        Object.assign($104608, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12509,7 +12509,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-f73e00",
+            _scopeId: "data-v-104608",
             functional: undefined
           };
         })());
@@ -12522,9 +12522,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$f73e00', $f73e00);
+            api.createRecord('$104608', $104608);
           } else {
-            api.reload('$f73e00', $f73e00);
+            api.reload('$104608', $104608);
           }
         }
 
@@ -12642,14 +12642,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $d2fba6 = exports.default || module.exports;
+        var $959306 = exports.default || module.exports;
       
-      if (typeof $d2fba6 === 'function') {
-        $d2fba6 = $d2fba6.options;
+      if (typeof $959306 === 'function') {
+        $959306 = $959306.options;
       }
     
         /* template */
-        Object.assign($d2fba6, (function () {
+        Object.assign($959306, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12668,7 +12668,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-d2fba6",
+            _scopeId: "data-v-959306",
             functional: undefined
           };
         })());
@@ -12681,9 +12681,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$d2fba6', $d2fba6);
+            api.createRecord('$959306', $959306);
           } else {
-            api.reload('$d2fba6', $d2fba6);
+            api.reload('$959306', $959306);
           }
         }
 
@@ -12783,7 +12783,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54683" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60260" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

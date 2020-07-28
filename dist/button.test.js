@@ -12496,14 +12496,14 @@ var _default = {
   props: ['name']
 };
 exports.default = _default;
-        var $b64c7d = exports.default || module.exports;
+        var $6a8acc = exports.default || module.exports;
       
-      if (typeof $b64c7d === 'function') {
-        $b64c7d = $b64c7d.options;
+      if (typeof $6a8acc === 'function') {
+        $6a8acc = $6a8acc.options;
       }
     
         /* template */
-        Object.assign($b64c7d, (function () {
+        Object.assign($6a8acc, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -12521,7 +12521,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-b64c7d",
+            _scopeId: "data-v-6a8acc",
             functional: undefined
           };
         })());
@@ -12534,9 +12534,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$b64c7d', $b64c7d);
+            api.createRecord('$6a8acc', $6a8acc);
           } else {
-            api.reload('$b64c7d', $b64c7d);
+            api.reload('$6a8acc', $6a8acc);
           }
         }
 
@@ -12593,14 +12593,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $9a6935 = exports.default || module.exports;
+        var $126bb0 = exports.default || module.exports;
       
-      if (typeof $9a6935 === 'function') {
-        $9a6935 = $9a6935.options;
+      if (typeof $126bb0 === 'function') {
+        $126bb0 = $126bb0.options;
       }
     
         /* template */
-        Object.assign($9a6935, (function () {
+        Object.assign($126bb0, (function () {
           var render = function() {
   var _obj
   var _vm = this
@@ -12641,7 +12641,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: "data-v-9a6935",
+            _scopeId: "data-v-126bb0",
             functional: undefined
           };
         })());
@@ -12654,9 +12654,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$9a6935', $9a6935);
+            api.createRecord('$126bb0', $126bb0);
           } else {
-            api.reload('$9a6935', $9a6935);
+            api.reload('$126bb0', $126bb0);
           }
         }
 
@@ -12788,7 +12788,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54683" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60260" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,9 +1,9 @@
-.t-icon[data-v-b64c7d] {
+.t-icon[data-v-6a8acc] {
   height: 1em;
   width: 1em;
 }
 @charset "UTF-8";
-@keyframes spin-data-v-9a6935 {
+@keyframes spin-data-v-126bb0 {
 0% {
     transform: rotate(0deg);
 }
@@ -11,7 +11,7 @@
     transform: rotate(360deg);
 }
 }
-.t-button[data-v-9a6935] {
+.t-button[data-v-126bb0] {
   display: inline-flex;
   /*垂直居中*/
   justify-content: center;
@@ -26,30 +26,30 @@
   /*默认icon在前面 content在后面*/
   /*如果iconPosition = right 则 content在前 icon在后*/
 }
-.t-button[data-v-9a6935]:hover {
+.t-button[data-v-126bb0]:hover {
   border-color: var(--border-color-hover);
 }
-.t-button[data-v-9a6935]:active {
+.t-button[data-v-126bb0]:active {
   background-color: var(--button-active-bg);
 }
-.t-button[data-v-9a6935]:focus {
+.t-button[data-v-126bb0]:focus {
   outline: none;
 }
-.t-button > .icon[data-v-9a6935] {
+.t-button > .icon[data-v-126bb0] {
   order: 1;
   margin-right: 0.3em;
 }
-.t-button > .content[data-v-9a6935] {
+.t-button > .content[data-v-126bb0] {
   order: 2;
 }
-.t-button.icon-right > .icon[data-v-9a6935] {
+.t-button.icon-right > .icon[data-v-126bb0] {
   order: 2;
   margin-left: 0.3em;
   margin-right: 0;
 }
-.t-button.icon-right > .content[data-v-9a6935] {
+.t-button.icon-right > .content[data-v-126bb0] {
   order: 1;
 }
-.t-button .loading[data-v-9a6935] {
-  animation: spin-data-v-9a6935 2s infinite linear;
+.t-button .loading[data-v-126bb0] {
+  animation: spin-data-v-126bb0 2s infinite linear;
 }

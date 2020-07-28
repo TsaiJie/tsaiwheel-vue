@@ -1,4 +1,9 @@
 <template>
+<!--
+	1. 解决的3个bug overflow: hidden body.appendChild
+	2. 重复关闭的问题（冒泡）document只管外面 popover只管里面
+	3. 忘了取消监听document -》 收拢close
+-->
 	<!--	做组件不能阻止冒泡-->
 	<div class="popover" @click="onClick" ref="popover">
 		<!--		对话框阻止冒泡-->
@@ -47,6 +52,7 @@
         setTimeout(() => {
           // 调整弹窗的位置
           this.positionContent()
+					// 绑定函数的时候需要等到 这个dom元素渲染后
           // 为document监听点击函数， 当监听函数触发后 然后再移除这个函数
           document.addEventListener('click', this.onClickDocument)
         })
