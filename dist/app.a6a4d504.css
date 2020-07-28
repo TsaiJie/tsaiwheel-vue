@@ -1025,6 +1025,7 @@
 .tabs-panel.active[data-v-6ceb0c] {
   padding: 1em;
 }
+@charset "UTF-8";
 .popover[data-v-468ccd] {
   display: inline-flex;
   vertical-align: top;
@@ -1032,7 +1033,33 @@
 }
 .content-wrapper[data-v-468ccd] {
   position: absolute;
-  border: 1px solid red;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  border-radius: 4px;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+  padding: 0.5em 1em;
   transform: translateY(-100%);
+  margin-top: -10px;
+  background: white;
+  /*最大宽度*/
+  max-width: 20em;
+  /*换行*/
+  word-break: break-all;
+  /*三角形*/
+}
+.content-wrapper[data-v-468ccd]::before, .content-wrapper[data-v-468ccd]::after {
+  position: absolute;
+  top: 100%;
+  left: 10px;
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  border: 10px solid transparent;
+}
+.content-wrapper[data-v-468ccd]::before {
+  border-top-color: black;
+}
+.content-wrapper[data-v-468ccd]::after {
+  top: calc(100% - 1px);
+  border-top-color: white;
 }

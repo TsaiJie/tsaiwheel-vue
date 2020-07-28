@@ -14263,6 +14263,10 @@ var _default = {
       this.$refs.contentWrapper.style.left = left + scrollX + 'px';
     },
     onClickDocument: function onClickDocument(e) {
+      if (this.$refs.popover && this.$refs.popover.contains(e.target)) {
+        return;
+      }
+
       if (this.$refs.contentWrapper && this.$refs.contentWrapper.contains(e.target)) {
         return;
       }

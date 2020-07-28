@@ -32,7 +32,7 @@
 
 </head>
 <body>
-<div id="app" style="margin: 50px; border: 1px solid red; overflow: hidden" @click="yyy" >
+<div id="app" style="margin: 50px; border: 1px solid red; overflow: hidden" @click="yyy">
 	<!--	<t-tabs selected="selectedTab" @update:selected="selectedTab = $event">-->
 	<!--	selected="selectedTab" @update:selected="selectedTab = $event"  等价于 selected.sync="selectedTab"-->
 	<!--	<t-tabs :selected.sync="selectedTab" @update:selected="yyy">-->
@@ -57,18 +57,21 @@
 	<!--			<t-tabs-panel name="sports">体育相关咨询</t-tabs-panel>-->
 	<!--		</t-tabs-body>-->
 	<!--	</t-tabs>-->
-	<t-popover>
-		<template slot="content">
-			<div>popover</div>
-		</template>
-		<t-button>点我</t-button>
-	</t-popover>
-	<t-popover>
-		<template slot="content">
-			<div>popover</div>
-		</template>
-		<t-button>点我</t-button>
-	</t-popover>
+	<div style="margin: 50px">
+		<t-popover>
+			<template slot="content">
+				<div>popoverpopoverpopoverpopoverpopoverpopoverpopoverpopoverpopoverpopoverpopoverpopover</div>
+			</template>
+			<t-button>点我</t-button>
+		</t-popover>
+		<t-popover>
+			<template slot="content">
+				<div>popover</div>
+			</template>
+			<t-button>点我</t-button>
+		</t-popover>
+	</div>
+
 
 </div>
 <script src="./src/app.js"></script>

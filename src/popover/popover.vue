@@ -1,9 +1,9 @@
 <template>
-<!--
-	1. 解决的3个bug overflow: hidden body.appendChild
-	2. 重复关闭的问题（冒泡）document只管外面 popover只管里面
-	3. 忘了取消监听document -》 收拢close
--->
+	<!--
+		1. 解决的3个bug overflow: hidden body.appendChild
+		2. 重复关闭的问题（冒泡）document只管外面 popover只管里面
+		3. 忘了取消监听document -》 收拢close
+	-->
 	<!--	做组件不能阻止冒泡-->
 	<div class="popover" @click="onClick" ref="popover">
 		<!--		对话框阻止冒泡-->
@@ -37,6 +37,9 @@
         this.$refs.contentWrapper.style.left = left + scrollX + 'px'
       },
       onClickDocument(e) {
+        if (this.$refs.popover && this.$refs.popover.contains(e.target)) {
+          return;
+        }
         if (this.$refs.contentWrapper && this.$refs.contentWrapper.contains(e.target)) {
           return;
         }
@@ -52,7 +55,7 @@
         setTimeout(() => {
           // 调整弹窗的位置
           this.positionContent()
-					// 绑定函数的时候需要等到 这个dom元素渲染后
+          // 绑定函数的时候需要等到 这个dom元素渲染后
           // 为document监听点击函数， 当监听函数触发后 然后再移除这个函数
           document.addEventListener('click', this.onClickDocument)
         })
@@ -74,6 +77,8 @@
 </script>
 
 <style lang="scss" scoped>
+	$border-color: #333;
+	$border-radius: 4px;
 	.popover {
 		display: inline-flex;
 		vertical-align: top;
@@ -81,8 +86,34 @@
 	}
 	.content-wrapper {
 		position: absolute;
-		border: 1px solid red;
-		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+		border: 1px solid $border-color;
+		border-radius: $border-radius;
+		filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+		padding: .5em 1em;
 		transform: translateY(-100%);
+		margin-top: -10px;
+		background: white;
+		/*最大宽度*/
+		max-width: 20em;
+		/*换行*/
+		word-break: break-all;
+		/*三角形*/
+		&::before, &::after {
+			position: absolute;
+			top: 100%;
+			left: 10px;
+			content: '';
+			display: block;
+			height: 0;
+			width: 0;
+			border: 10px solid transparent;
+		}
+		&::before {
+			border-top-color: black;
+		}
+		&::after {
+			top: calc(100% - 1px);
+			border-top-color: white;
+		}
 	}
 </style>
