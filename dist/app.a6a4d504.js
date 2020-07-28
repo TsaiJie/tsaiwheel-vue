@@ -14245,6 +14245,15 @@ exports.default = void 0;
 //
 var _default = {
   name: "WheelPopover",
+  props: {
+    position: {
+      type: String,
+      default: 'top',
+      validator: function validator(value) {
+        return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0;
+      }
+    }
+  },
   data: function data() {
     return {
       visible: false
@@ -14253,14 +14262,39 @@ var _default = {
   methods: {
     positionContent: function positionContent() {
       // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
-      document.body.appendChild(this.$refs.contentWrapper); // top, left 可视范围的 要加上 scrollY滚动条的
+      document.body.appendChild(this.$refs.contentWrapper); // top, left 可视范围的 要加上 scrollY滚动条的\
 
-      var _this$$refs$triggerWr = this.$refs.triggerWrapper.getBoundingClientRect(),
-          top = _this$$refs$triggerWr.top,
-          left = _this$$refs$triggerWr.left;
+      var _this$$refs = this.$refs,
+          contentWrapper = _this$$refs.contentWrapper,
+          triggerWrapper = _this$$refs.triggerWrapper;
 
-      this.$refs.contentWrapper.style.top = top + scrollY + 'px';
-      this.$refs.contentWrapper.style.left = left + scrollX + 'px';
+      var _triggerWrapper$getBo = triggerWrapper.getBoundingClientRect(),
+          top = _triggerWrapper$getBo.top,
+          left = _triggerWrapper$getBo.left,
+          height = _triggerWrapper$getBo.height,
+          width = _triggerWrapper$getBo.width;
+
+      if (this.position === 'top') {
+        contentWrapper.style.top = top + scrollY + 'px';
+        contentWrapper.style.left = left + scrollX + 'px';
+      } else if (this.position === 'bottom') {
+        contentWrapper.style.top = top + height + scrollY + 'px';
+        contentWrapper.style.left = left + scrollX + 'px';
+      } else if (this.position === 'left') {
+        //居中对齐
+        var _contentWrapper$getBo = contentWrapper.getBoundingClientRect(),
+            contentWrapperHeight = _contentWrapper$getBo.height;
+
+        contentWrapper.style.top = top + scrollY + (height - contentWrapperHeight) / 2 + 'px';
+        contentWrapper.style.left = left + scrollX + 'px';
+      } else {
+        //居中对齐
+        var _contentWrapper$getBo2 = contentWrapper.getBoundingClientRect(),
+            _contentWrapperHeight = _contentWrapper$getBo2.height;
+
+        contentWrapper.style.top = top + scrollY + (height - _contentWrapperHeight) / 2 + 'px';
+        contentWrapper.style.left = left + scrollX + width + 'px';
+      }
     },
     onClickDocument: function onClickDocument(e) {
       if (this.$refs.popover && this.$refs.popover.contains(e.target)) {
@@ -14313,6 +14347,7 @@ exports.default = _default;
         /* template */
         Object.assign($468ccd, (function () {
           var render = function() {
+  var _obj
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -14323,7 +14358,12 @@ exports.default = _default;
       _vm.visible
         ? _c(
             "div",
-            { ref: "contentWrapper", staticClass: "content-wrapper" },
+            {
+              ref: "contentWrapper",
+              staticClass: "content-wrapper",
+              class:
+                ((_obj = {}), (_obj["position-" + _vm.position] = true), _obj)
+            },
             [_vm._t("content")],
             2
           )

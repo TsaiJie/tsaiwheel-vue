@@ -9,7 +9,7 @@
 		<!--		对话框阻止冒泡-->
 		<!--		v-if 是不显示在dom树中，页面中没有这个元素-->
 		<!--		v-show 是显示在dom树中，页面中有这个元素 但是看不到-->
-		<div ref="contentWrapper" class="content-wrapper" v-if="visible">
+		<div ref="contentWrapper" class="content-wrapper" v-if="visible" :class="{[`position-${position}`]: true}">
 			<slot name="content"></slot>
 		</div>
 		<span ref="triggerWrapper">
@@ -22,6 +22,15 @@
 <script>
   export default {
     name: "WheelPopover",
+    props: {
+      position: {
+        type: String,
+        default: 'top',
+        validator(value) {
+          return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
+        }
+      }
+    },
     data() {
       return {
         visible: false
@@ -31,10 +40,28 @@
       positionContent() {
         // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
         document.body.appendChild(this.$refs.contentWrapper)
-        // top, left 可视范围的 要加上 scrollY滚动条的
-        let {top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
-        this.$refs.contentWrapper.style.top = top + scrollY + 'px'
-        this.$refs.contentWrapper.style.left = left + scrollX + 'px'
+        // top, left 可视范围的 要加上 scrollY滚动条的\
+        let {contentWrapper, triggerWrapper} = this.$refs
+        let {top, left, height, width} = triggerWrapper.getBoundingClientRect()
+        if (this.position === 'top') {
+          contentWrapper.style.top = top + scrollY + 'px'
+          contentWrapper.style.left = left + scrollX + 'px'
+        } else if (this.position === 'bottom') {
+          contentWrapper.style.top = top + height + scrollY + 'px'
+          contentWrapper.style.left = left + scrollX + 'px'
+        } else if (this.position === 'left') {
+          //居中对齐
+          let {height: contentWrapperHeight} = contentWrapper.getBoundingClientRect()
+          contentWrapper.style.top = top + scrollY + (height - contentWrapperHeight) / 2 + 'px'
+          contentWrapper.style.left = left + scrollX + 'px'
+        } else {
+          //居中对齐
+          let {height: contentWrapperHeight} = contentWrapper.getBoundingClientRect()
+          contentWrapper.style.top = top + scrollY + (height - contentWrapperHeight) / 2 + 'px'
+          contentWrapper.style.left = left + scrollX + width + 'px'
+        }
+
+
       },
       onClickDocument(e) {
         if (this.$refs.popover && this.$refs.popover.contains(e.target)) {
@@ -90,30 +117,84 @@
 		border-radius: $border-radius;
 		filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
 		padding: .5em 1em;
-		transform: translateY(-100%);
-		margin-top: -10px;
+
 		background: white;
 		/*最大宽度*/
 		max-width: 20em;
 		/*换行*/
 		word-break: break-all;
-		/*三角形*/
 		&::before, &::after {
 			position: absolute;
-			top: 100%;
-			left: 10px;
 			content: '';
 			display: block;
 			height: 0;
 			width: 0;
 			border: 10px solid transparent;
 		}
-		&::before {
-			border-top-color: black;
+		&.position-top {
+			transform: translateY(-100%);
+			margin-top: -10px;
+			/*三角形*/
+			&::before, &::after {
+				top: 100%;
+				left: 10px;
+			}
+			&::before {
+				border-top-color: black;
+			}
+			&::after {
+				top: calc(100% - 1px);
+				border-top-color: white;
+			}
 		}
-		&::after {
-			top: calc(100% - 1px);
-			border-top-color: white;
+		&.position-bottom {
+			margin-top: 10px;
+			/*三角形*/
+			&::before, &::after {
+				bottom: 100%;
+				left: 10px;
+			}
+			&::before {
+				border-bottom-color: black;
+			}
+			&::after {
+				bottom: calc(100% - 1px);
+				border-bottom-color: white;
+			}
 		}
+		&.position-left {
+			transform: translateX(-100%);
+			margin-left: -10px;
+			&::before, &::after {
+				left: 100%;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			&::before {
+				border-left-color: black;
+			}
+			&::after {
+				left: calc(100% - 1px);
+				border-left-color: white;
+			}
+		}
+
+		&.position-right {
+			margin-left: 10px;
+			&::before, &::after {
+				right: 100%;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			&::before {
+				border-right-color: black;
+			}
+			&::after {
+				right: calc(100% - 1px);
+				border-right-color: white;
+			}
+		}
+
+
 	}
 </style>

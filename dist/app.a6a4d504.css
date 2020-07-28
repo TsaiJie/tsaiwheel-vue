@@ -1037,29 +1037,79 @@
   border-radius: 4px;
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
   padding: 0.5em 1em;
-  transform: translateY(-100%);
-  margin-top: -10px;
   background: white;
   /*最大宽度*/
   max-width: 20em;
   /*换行*/
   word-break: break-all;
-  /*三角形*/
 }
 .content-wrapper[data-v-468ccd]::before, .content-wrapper[data-v-468ccd]::after {
   position: absolute;
-  top: 100%;
-  left: 10px;
   content: "";
   display: block;
   height: 0;
   width: 0;
   border: 10px solid transparent;
 }
-.content-wrapper[data-v-468ccd]::before {
+.content-wrapper.position-top[data-v-468ccd] {
+  transform: translateY(-100%);
+  margin-top: -10px;
+  /*三角形*/
+}
+.content-wrapper.position-top[data-v-468ccd]::before, .content-wrapper.position-top[data-v-468ccd]::after {
+  top: 100%;
+  left: 10px;
+}
+.content-wrapper.position-top[data-v-468ccd]::before {
   border-top-color: black;
 }
-.content-wrapper[data-v-468ccd]::after {
+.content-wrapper.position-top[data-v-468ccd]::after {
   top: calc(100% - 1px);
   border-top-color: white;
+}
+.content-wrapper.position-bottom[data-v-468ccd] {
+  margin-top: 10px;
+  /*三角形*/
+}
+.content-wrapper.position-bottom[data-v-468ccd]::before, .content-wrapper.position-bottom[data-v-468ccd]::after {
+  bottom: 100%;
+  left: 10px;
+}
+.content-wrapper.position-bottom[data-v-468ccd]::before {
+  border-bottom-color: black;
+}
+.content-wrapper.position-bottom[data-v-468ccd]::after {
+  bottom: calc(100% - 1px);
+  border-bottom-color: white;
+}
+.content-wrapper.position-left[data-v-468ccd] {
+  transform: translateX(-100%);
+  margin-left: -10px;
+}
+.content-wrapper.position-left[data-v-468ccd]::before, .content-wrapper.position-left[data-v-468ccd]::after {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.content-wrapper.position-left[data-v-468ccd]::before {
+  border-left-color: black;
+}
+.content-wrapper.position-left[data-v-468ccd]::after {
+  left: calc(100% - 1px);
+  border-left-color: white;
+}
+.content-wrapper.position-right[data-v-468ccd] {
+  margin-left: 10px;
+}
+.content-wrapper.position-right[data-v-468ccd]::before, .content-wrapper.position-right[data-v-468ccd]::after {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.content-wrapper.position-right[data-v-468ccd]::before {
+  border-right-color: black;
+}
+.content-wrapper.position-right[data-v-468ccd]::after {
+  right: calc(100% - 1px);
+  border-right-color: white;
 }
