@@ -14261,12 +14261,15 @@ var _default = {
   },
   methods: {
     positionContent: function positionContent() {
-      // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
-      document.body.appendChild(this.$refs.contentWrapper); // top, left 可视范围的 要加上 scrollY滚动条的\
-
+      // top, left 可视范围的 要加上 scrollY滚动条的\
       var _this$$refs = this.$refs,
           contentWrapper = _this$$refs.contentWrapper,
-          triggerWrapper = _this$$refs.triggerWrapper;
+          triggerWrapper = _this$$refs.triggerWrapper; // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
+
+      document.body.appendChild(contentWrapper); //居中对齐
+
+      var _contentWrapper$getBo = contentWrapper.getBoundingClientRect(),
+          contentWrapperHeight = _contentWrapper$getBo.height;
 
       var _triggerWrapper$getBo = triggerWrapper.getBoundingClientRect(),
           top = _triggerWrapper$getBo.top,
@@ -14274,27 +14277,26 @@ var _default = {
           height = _triggerWrapper$getBo.height,
           width = _triggerWrapper$getBo.width;
 
-      if (this.position === 'top') {
-        contentWrapper.style.top = top + scrollY + 'px';
-        contentWrapper.style.left = left + scrollX + 'px';
-      } else if (this.position === 'bottom') {
-        contentWrapper.style.top = top + height + scrollY + 'px';
-        contentWrapper.style.left = left + scrollX + 'px';
-      } else if (this.position === 'left') {
-        //居中对齐
-        var _contentWrapper$getBo = contentWrapper.getBoundingClientRect(),
-            contentWrapperHeight = _contentWrapper$getBo.height;
-
-        contentWrapper.style.top = top + scrollY + (height - contentWrapperHeight) / 2 + 'px';
-        contentWrapper.style.left = left + scrollX + 'px';
-      } else {
-        //居中对齐
-        var _contentWrapper$getBo2 = contentWrapper.getBoundingClientRect(),
-            _contentWrapperHeight = _contentWrapper$getBo2.height;
-
-        contentWrapper.style.top = top + scrollY + (height - _contentWrapperHeight) / 2 + 'px';
-        contentWrapper.style.left = left + scrollX + width + 'px';
-      }
+      var positions = {
+        top: {
+          top: top + scrollY,
+          left: left + scrollX
+        },
+        bottom: {
+          top: top + height + scrollY,
+          left: left + scrollX
+        },
+        left: {
+          top: top + scrollY + (height - contentWrapperHeight) / 2,
+          left: left + scrollX
+        },
+        right: {
+          top: top + scrollY + (height - contentWrapperHeight) / 2,
+          left: left + scrollX + width
+        }
+      };
+      contentWrapper.style.left = positions[this.position].left + 'px';
+      contentWrapper.style.top = positions[this.position].top + 'px';
     },
     onClickDocument: function onClickDocument(e) {
       if (this.$refs.popover && this.$refs.popover.contains(e.target)) {
