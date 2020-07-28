@@ -14252,6 +14252,13 @@ var _default = {
       validator: function validator(value) {
         return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0;
       }
+    },
+    trigger: {
+      type: String,
+      default: 'click',
+      validator: function validator(value) {
+        return ['click', 'hover'].indexOf(value) >= 0;
+      }
     }
   },
   data: function data() {
@@ -14259,9 +14266,25 @@ var _default = {
       visible: false
     };
   },
+  mounted: function mounted() {
+    if (this.trigger === 'click') {
+      this.$refs.popover.addEventListener('click', this.onClick);
+    } else {
+      this.$refs.popover.addEventListener('mouseenter', this.open);
+      this.$refs.popover.addEventListener('mouseleave', this.close);
+    }
+  },
+  destroyed: function destroyed() {
+    if (this.trigger === 'click') {
+      this.$refs.popover.removeEventListener('click', this.onClick);
+    } else {
+      this.$refs.popover.removeEventListener('mouseenter', this.open);
+      this.$refs.popover.removeEventListener('mouseleave', this.close);
+    }
+  },
   methods: {
     positionContent: function positionContent() {
-      // top, left 可视范围的 要加上 scrollY滚动条的\
+      // top, left 可视范围的 要加上 scrollY滚动条的
       var _this$$refs = this.$refs,
           contentWrapper = _this$$refs.contentWrapper,
           triggerWrapper = _this$$refs.triggerWrapper; // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
@@ -14336,8 +14359,7 @@ var _default = {
         }
       }
     }
-  },
-  mounted: function mounted() {}
+  }
 };
 exports.default = _default;
         var $468ccd = exports.default || module.exports;
@@ -14353,27 +14375,23 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { ref: "popover", staticClass: "popover", on: { click: _vm.onClick } },
-    [
-      _vm.visible
-        ? _c(
-            "div",
-            {
-              ref: "contentWrapper",
-              staticClass: "content-wrapper",
-              class:
-                ((_obj = {}), (_obj["position-" + _vm.position] = true), _obj)
-            },
-            [_vm._t("content")],
-            2
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("span", { ref: "triggerWrapper" }, [_vm._t("default")], 2)
-    ]
-  )
+  return _c("div", { ref: "popover", staticClass: "popover" }, [
+    _vm.visible
+      ? _c(
+          "div",
+          {
+            ref: "contentWrapper",
+            staticClass: "content-wrapper",
+            class:
+              ((_obj = {}), (_obj["position-" + _vm.position] = true), _obj)
+          },
+          [_vm._t("content")],
+          2
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("span", { ref: "triggerWrapper" }, [_vm._t("default")], 2)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

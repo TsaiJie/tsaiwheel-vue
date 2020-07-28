@@ -5,7 +5,7 @@
 		3. 忘了取消监听document -》 收拢close
 	-->
 	<!--	做组件不能阻止冒泡-->
-	<div class="popover" @click="onClick" ref="popover">
+	<div class="popover" ref="popover">
 		<!--		对话框阻止冒泡-->
 		<!--		v-if 是不显示在dom树中，页面中没有这个元素-->
 		<!--		v-show 是显示在dom树中，页面中有这个元素 但是看不到-->
@@ -29,6 +29,13 @@
         validator(value) {
           return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
         }
+      },
+			trigger: {
+        type: String,
+        default: 'click',
+        validator(value) {
+          return ['click','hover'].indexOf(value) >= 0
+        }
       }
     },
     data() {
@@ -36,10 +43,25 @@
         visible: false
       }
     },
+		mounted() {
+      if (this.trigger === 'click'){
+        this.$refs.popover.addEventListener('click', this.onClick)
+			} else {
+        this.$refs.popover.addEventListener('mouseenter', this.open)
+        this.$refs.popover.addEventListener('mouseleave', this.close)
+			}
+    },
+		destroyed() {
+      if (this.trigger === 'click'){
+        this.$refs.popover.removeEventListener('click', this.onClick)
+			} else {
+        this.$refs.popover.removeEventListener('mouseenter', this.open)
+        this.$refs.popover.removeEventListener('mouseleave', this.close)
+			}
+    },
     methods: {
       positionContent() {
-
-        // top, left 可视范围的 要加上 scrollY滚动条的\
+        // top, left 可视范围的 要加上 scrollY滚动条的
         let {contentWrapper, triggerWrapper} = this.$refs
         // 为了避免用户使用 overflow:hidden 把这个弹出框移到body中去
         document.body.appendChild(contentWrapper)
@@ -102,8 +124,6 @@
           }
         }
       }
-    },
-    mounted() {
     }
   }
 </script>
