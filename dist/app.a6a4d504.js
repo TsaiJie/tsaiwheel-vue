@@ -14444,6 +14444,170 @@ render._withStripped = true
       
       }
     })();
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/collapse/collapse.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "WheelCollapse"
+};
+exports.default = _default;
+        var $86ec6e = exports.default || module.exports;
+      
+      if (typeof $86ec6e === 'function') {
+        $86ec6e = $86ec6e.options;
+      }
+    
+        /* template */
+        Object.assign($86ec6e, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "collapse" }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-86ec6e",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$86ec6e', $86ec6e);
+          } else {
+            api.reload('$86ec6e', $86ec6e);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/collapse/collapse-item.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  name: "WheelCollapseItem",
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      open: false
+    };
+  }
+};
+exports.default = _default;
+        var $165994 = exports.default || module.exports;
+      
+      if (typeof $165994 === 'function') {
+        $165994 = $165994.options;
+      }
+    
+        /* template */
+        Object.assign($165994, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "collapseItem" }, [
+    _c(
+      "div",
+      {
+        staticClass: "title",
+        on: {
+          click: function($event) {
+            _vm.open = !_vm.open
+          }
+        }
+      },
+      [_vm._v("\n\t\t" + _vm._s(_vm.title) + "\n\t")]
+    ),
+    _vm._v(" "),
+    _vm.open
+      ? _c("div", { staticClass: "content" }, [_vm._t("default")], 2)
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-165994",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$165994', $165994);
+          } else {
+            api.reload('$165994', $165994);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
 },{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.common.js"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -14485,6 +14649,10 @@ var _tabsPanel = _interopRequireDefault(require("./tabs/tabs-panel"));
 
 var _popover = _interopRequireDefault(require("./popover/popover"));
 
+var _collapse = _interopRequireDefault(require("./collapse/collapse"));
+
+var _collapseItem = _interopRequireDefault(require("./collapse/collapse-item"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue.default.component('t-button', _button.default);
@@ -14519,7 +14687,11 @@ _vue.default.component('t-tabs-item', _tabsItem.default);
 
 _vue.default.component('t-tabs-panel', _tabsPanel.default);
 
-_vue.default.component('t-popover', _popover.default); // 如何实现this.$toast(message)
+_vue.default.component('t-popover', _popover.default);
+
+_vue.default.component('t-collapse', _collapse.default);
+
+_vue.default.component('t-collapse-item', _collapseItem.default); // 如何实现this.$toast(message)
 // 首先创建vue组件
 // 然后创建相应的plugin vue和plugin关联起来
 // use方法会默认调用 plugin的install(Vue, options)方法 进行注册使用
@@ -14564,7 +14736,7 @@ new _vue.default({
     }
   }
 });
-},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./layout/layout":"src/layout/layout.vue","./layout/header":"src/layout/header.vue","./layout/content":"src/layout/content.vue","./layout/footer":"src/layout/footer.vue","./layout/sider":"src/layout/sider.vue","./plugin/plugin":"src/plugin/plugin.js","./tabs/tabs":"src/tabs/tabs.vue","./tabs/tabs-head":"src/tabs/tabs-head.vue","./tabs/tabs-body":"src/tabs/tabs-body.vue","./tabs/tabs-item":"src/tabs/tabs-item.vue","./tabs/tabs-panel":"src/tabs/tabs-panel.vue","./popover/popover":"src/popover/popover.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.common.js","./button":"src/button.vue","./icon":"src/icon.vue","./button-group":"src/button-group.vue","./input":"src/input.vue","./row":"src/row.vue","./col":"src/col.vue","./layout/layout":"src/layout/layout.vue","./layout/header":"src/layout/header.vue","./layout/content":"src/layout/content.vue","./layout/footer":"src/layout/footer.vue","./layout/sider":"src/layout/sider.vue","./plugin/plugin":"src/plugin/plugin.js","./tabs/tabs":"src/tabs/tabs.vue","./tabs/tabs-head":"src/tabs/tabs-head.vue","./tabs/tabs-body":"src/tabs/tabs-body.vue","./tabs/tabs-item":"src/tabs/tabs-item.vue","./tabs/tabs-panel":"src/tabs/tabs-panel.vue","./popover/popover":"src/popover/popover.vue","./collapse/collapse":"src/collapse/collapse.vue","./collapse/collapse-item":"src/collapse/collapse-item.vue"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -14592,7 +14764,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59414" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60869" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

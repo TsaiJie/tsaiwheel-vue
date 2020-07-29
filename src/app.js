@@ -20,6 +20,8 @@ import TabsPanel from './tabs/tabs-panel'
 
 import Popover from './popover/popover'
 
+import Collapse from  './collapse/collapse'
+import CollapseItem from  './collapse/collapse-item'
 Vue.component('t-button', Button)
 Vue.component('t-icon', Icon)
 Vue.component('t-button-group', ButtonGroup)
@@ -39,6 +41,9 @@ Vue.component('t-tabs-item', TabsItem)
 Vue.component('t-tabs-panel', TabsPanel)
 
 Vue.component('t-popover', Popover)
+
+Vue.component('t-collapse', Collapse)
+Vue.component('t-collapse-item', CollapseItem)
 
 
 // 如何实现this.$toast(message)
