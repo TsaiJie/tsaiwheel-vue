@@ -14471,7 +14471,7 @@ var _default = {
       default: false
     },
     selected: {
-      type: String
+      type: Array
     }
   },
   data: function data() {
@@ -14488,9 +14488,27 @@ var _default = {
     var _this = this;
 
     this.eventBus.$emit('update:selected', this.selected);
-    console.log(this.selected);
-    this.eventBus.$on('update:selected', function (name) {
-      _this.$emit('update:selected', name);
+    this.eventBus.$on('update:addSelected', function (name) {
+      var selectedCopy = JSON.parse(JSON.stringify(_this.selected));
+
+      if (_this.single) {
+        selectedCopy = [name];
+      } else {
+        selectedCopy.push(name);
+      }
+
+      _this.$emit('update:selected', selectedCopy);
+
+      _this.eventBus.$emit('update:selected', selectedCopy);
+    });
+    this.eventBus.$on('update:removeSelected', function (name) {
+      var selectedCopy = JSON.parse(JSON.stringify(_this.selected));
+      var index = selectedCopy.indexOf(name);
+      selectedCopy.splice(index, 1);
+
+      _this.$emit('update:selected', selectedCopy);
+
+      _this.eventBus.$emit('update:selected', selectedCopy);
     });
   }
 };
@@ -14583,20 +14601,22 @@ var _default = {
   mounted: function mounted() {
     var _this = this;
 
-    this.eventBus && this.eventBus.$on('update:selected', function (name) {
-      if (name !== _this.name) {
-        _this.close();
-      } else {
+    this.eventBus.$on('update:selected', function (names) {
+      console.log(names);
+
+      if (names.indexOf(_this.name) >= 0) {
         _this.show();
+      } else {
+        _this.close();
       }
     });
   },
   methods: {
     toggle: function toggle() {
       if (this.open) {
-        this.close();
+        this.eventBus.$emit('update:removeSelected', this.name);
       } else {
-        this.eventBus && this.eventBus.$emit('update:selected', this.name);
+        this.eventBus.$emit('update:addSelected', this.name);
       }
     },
     close: function close() {
@@ -14759,7 +14779,7 @@ new _vue.default({
   data: {
     loading1: false,
     message: "1111",
-    selectedTab: '2'
+    selectedTab: ['1', '2']
   },
   methods: {
     inputChange: function inputChange(e) {
