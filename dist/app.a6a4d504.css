@@ -17,20 +17,20 @@
   justify-content: center;
   align-items: center;
   vertical-align: middle;
-  font-size: var(--font-size);
-  height: var(--button-height);
+  font-size: var(14px);
+  height: var(32px);
   padding: 0 1em;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-  background: var(--button-bg);
+  border-radius: var(4px);
+  border: 1px solid var(#999);
+  background: var(white);
   /*默认icon在前面 content在后面*/
   /*如果iconPosition = right 则 content在前 icon在后*/
 }
 .t-button[data-v-27e329]:hover {
-  border-color: var(--border-color-hover);
+  border-color: var(#666);
 }
 .t-button[data-v-27e329]:active {
-  background-color: var(--button-active-bg);
+  background-color: var(#eee);
 }
 .t-button[data-v-27e329]:focus {
   outline: none;
