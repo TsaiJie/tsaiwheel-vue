@@ -5,8 +5,7 @@
     <t-button icon="settings" icon-position="right">默认按钮</t-button>
     <t-button :loading="true">默认按钮</t-button>
     <t-button disabled>默认按钮</t-button>
-    <pre>
-      <code>{{content}}</code></pre>
+    <pre><code>{{content}}</code></pre>
   </div>
 </template>
 
@@ -21,7 +20,9 @@ export default {
     <t-button icon="settings" icon-position="right">默认按钮</t-button>
     <t-button :loading="true">默认按钮</t-button>
     <t-button disabled>默认按钮</t-button>
-    `,
+    `
+        .replace(/\t+| +/g, '')
+        .trim(),
     };
   },
   components: {
