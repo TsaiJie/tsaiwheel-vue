@@ -1,9 +1,5 @@
 <template>
-  <button
-    class="t-button"
-    :class="{ [`icon-${iconPosition}`]: true }"
-    @click="$emit('click')"
-  >
+  <button class="t-button" :class="{ [`icon-${iconPosition}`]: true }" @click="$emit('click')">
     <t-icon class="icon" v-if="icon && !loading" :name="icon"></t-icon>
     <t-icon class="icon loading" v-if="loading" name="loading"></t-icon>
     <div class="content">
@@ -13,7 +9,7 @@
 </template>
 
 <script>
-import Icon from './icon';
+import Icon from './icon'
 export default {
   name: 'WheelButton',
   props: {
@@ -26,14 +22,14 @@ export default {
       type: String,
       default: 'left',
       validator(value) {
-        return value === 'left' || value === 'right';
+        return value === 'left' || value === 'right'
       },
     },
   },
   components: {
     't-icon': Icon,
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -60,20 +56,23 @@ $border-color-hover: #666;
   align-items: center;
   vertical-align: middle;
 
-  font-size: var($font-size);
-  height: var($button-height);
+  font-size: $font-size;
+  height: $button-height;
   padding: 0 1em;
-  border-radius: var($border-radius);
-  border: 1px solid var($border-color);
-  background: var($button-bg);
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  background: $button-bg;
   &:hover {
-    border-color: var($border-color-hover);
+    border-color: $border-color-hover;
   }
   &:active {
-    background-color: var($button-active-bg);
+    background-color: $button-active-bg;
   }
   &:focus {
     outline: none;
+  }
+  &:disabled {
+    pointer-events: none;
   }
   /*默认icon在前面 content在后面*/
   > .icon {

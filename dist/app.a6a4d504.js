@@ -12569,10 +12569,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
 var _default = {
   name: 'WheelButton',
   props: {
@@ -12691,7 +12687,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 var _default = {
-  name: "WheelButtonGroup",
+  name: 'WheelButtonGroup',
   mounted: function mounted() {
     var _iterator = _createForOfIteratorHelper(this.$el.children),
         _step;
