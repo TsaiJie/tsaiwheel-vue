@@ -34,7 +34,11 @@
   <body>
     <div id="app" style="margin: 100px;">
       <t-button :loading="true">morne</t-button>
-      <t-button disabled>morne</t-button>
+      <t-button disabled>
+        <span slot="close">close</span>
+        <span slot="open">open</span>
+      </t-button>
+
       <!--	<t-tabs selected="selectedTab" @update:selected="selectedTab = $event">-->
       <!--	selected="selectedTab" @update:selected="selectedTab = $event"  等价于 selected.sync="selectedTab"-->
       <!--	<t-tabs :selected.sync="selectedTab" @update:selected="yyy">-->
